@@ -15,18 +15,18 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <div class="navbar-brand" href="#/">U.S.E.S.</div>
+          <div class="navbar-brand" ng-href="#/">U.S.E.S.</div>
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController as headerCtrl">
           <ul class="nav navbar-nav">
             <li ng-class="{active:headerCtrl.isSelected(1)}">
-              <a href="#/myAccount" id="myAccount">My Account</a>
+              <a ng-href="#/myAccount" id="myAccount">My Account</a>
             </li>
             <li ng-class="{active:headerCtrl.isSelected(2)}">
-              <a href="#/" id="aboutUses">About U.S.E.S.</a>
+              <a ng-href="#/" id="aboutUses">About U.S.E.S.</a>
             </li>
             <li ng-class="{active:headerCtrl.isSelected(3)}">
-              <a href="#/createAccount" id="createAccount">Create Account</a>
+              <a ng-href="#/createAccount" id="createAccount">Create Account</a>
             </li>
           </ul>
         </div>
