@@ -1,0 +1,15 @@
+{
+  "name": "uses",
+  "version": "0.0.1",
+  "description": "a server for smart home development",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.10.1",
+    "express": "^4.10.2",
+    "kandy": "^1.2.6",
+    "mongodb": "^2.2.5",
+    "socket.io": "^1.4.8"
+  }
+}
