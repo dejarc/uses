@@ -90,29 +90,11 @@ app.post('/createNewUser',function(req,res) {
   if(!(req.body && req.body.user_id)) {
     handleError(res, "Invalid Input","You must submit a valid account.");
   } else {
-    var newUser = req.body;
-    db.collection(ALL_USERS).update({user_id: req.body.user_id},//avoid creating multiple alexa user accounts in the system
-    {$set: {user_id: req.body.user_id}},{upsert:true}, function(err, doc){
-        if(err) {
-          handleError(res,err.message,'failed to create user account');
-        } else {
-          var new_doc = doc.result.upserted;
-          var res_msg = (new_doc)?new_doc[0]:null;
-          res.status(200).json(res_msg);
-        }
-    });
+    //need to to handle the logic here
   }
 });
 app.get('/allUsers/:id',function(req,res) {//get the user account id
-  db.collection(ALL_USERS).findOne({user_id: req.params.id},function(err,doc) {
-      if(err) {
-        handleError(res,err.message,"failed to get the user credentials");
-      } else {
-        console.log(doc);
-        console.log(typeof doc);
-        res.status(200).json({"account_info": doc});
-      }
-  });
+  //need to add body here
 });
 app.get('/testConnection',function(req,res) {
   res.status(200).json({msg: "You are now connected"});
