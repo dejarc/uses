@@ -32,6 +32,10 @@
     cursor: pointer;
 }
 
+.jumbotron {
+    text-align: center;
+}
+
 
 /*!
  * Start Bootstrap - SB Admin (http://startbootstrap.com/)
@@ -40,16 +44,6 @@
  */
 
 /* Global Styles */
-
-body {
-    background-color: #222;
-}
-
-@media(min-width:768px) {
-    body {
-    }
-}
-
 #wrapper {
     padding-left: 0;
 }
