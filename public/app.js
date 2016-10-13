@@ -7,7 +7,12 @@ angular.module('myApp', [
   'myApp.home',
   'myApp.dashboard'
 ])
-.run(["$rootScope", "$location", function($rootScope, $location) {
+.run(["$rootScope", "$location", "Auth", function($rootScope, $location, Auth) {
+  $rootScope.$on("$routeChangeSuccess", function(event) {
+    if (Auth.$getAuth() && $location.$$path == '/home') {
+      $location.path("/dashboard");
+    } 
+  });
   $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
     // We can catch the error thrown when the $requireSignIn promise is rejected
     // and redirect the user back to the home page

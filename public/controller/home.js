@@ -9,9 +9,6 @@ angular.module('myApp.home', ['ngRoute'])
     // any time auth state changes, add the user data to scope
     $scope.auth.$onAuthStateChanged(function(firebaseUser) {
      	$scope.firebaseUser = firebaseUser;
-     	if (firebaseUser) {
-     		$location.path("/dashboard");
-     	}
     });
 
 	$scope.SignIn = function(event) {
