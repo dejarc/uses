@@ -10,7 +10,8 @@ angular.module('myApp', [
   'myApp.settings',
   'myApp.addModule',
   'myApp.contact',
-  'myApp.about'
+  'myApp.about',
+  'myApp.sidebar'
 ])
 .run(["$rootScope", "$location", "Auth", function($rootScope, $location, Auth) {
   $rootScope.$on("$routeChangeSuccess", function(event) {
