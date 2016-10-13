@@ -2,9 +2,14 @@
  
 angular.module('myApp.sidebar', ['ngRoute'])
 // Home controller
-.controller('SidebarCtrl', ["$scope", "$location", function($scope, $location) {
+.controller('SidebarCtrl', ["$scope", "$location", "Auth", function($scope, $location, Auth) {
   $scope.isActiveMenu = function(path) {
     return  path == $location.$$path;
+  }
+
+  $scope.signOut = function() {
+  	Auth.$signOut();
+  	$location.path('/home');
   }
 }]);
 
