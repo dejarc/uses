@@ -131,24 +131,20 @@ function initNameSpace(user_id,send_res) {
     console.log('someone connected to namespace ' + user_id);
     this.total_users += 1;
     console.log("the total users in this namespace are " + this.total_users);
-    client.on('setName',function(msg) {
-        client.user_name = msg.user_name;
-        client.broadcast.emit('connection',msg);//after name is set alert everyone else of new user
-    });
-    client.on('storeData',function(msg) {//store the game id for db inserts
+    client.on('storeData',function(msg) {//store data for the session
       console.log('storing game ' + msg.game_id);
       nsp.game_id = msg.game_id;
     });
-    client.on('gameMessage',function(msg) {
+    client.on('gameMessage',function(msg) {//send a message back to the client
       client.emit('newMessage',msg);
     });
-    client.on('newMessage', function(msg){
+    client.on('newMessage', function(msg){//broadcast an update to everyone listening
       console.log('message sent was ' + msg);
       client.broadcast.emit('newMessage',msg);
 
     });
     client.on('timeoutCheck',function() {//notify the client that user they are still connected
-      client.emit('timeout_check');
+      client.emit('timeoutCheck');
     });
     client.on('disconnect', function(){
       nsp.total_users -= 1;
