@@ -131,31 +131,23 @@ function initNameSpace(user_id,send_res) {
     console.log('someone connected to namespace ' + user_id);
     this.total_users += 1;
     console.log("the total users in this namespace are " + this.total_users);
-    client.on('set_name',function(msg) {
+    client.on('setName',function(msg) {
         client.user_name = msg.user_name;
         client.broadcast.emit('connection',msg);//after name is set alert everyone else of new user
     });
-    client.on('store_game',function(msg) {//store the game id for db inserts
+    client.on('storeData',function(msg) {//store the game id for db inserts
       console.log('storing game ' + msg.game_id);
       nsp.game_id = msg.game_id;
     });
-    client.on('send_player', function() {
-      if(!nsp.game_id) {
-        return;
-      }
-      client.broadcast.emit('send_player');
+    client.on('gameMessage',function(msg) {
+      client.emit('newMessage',msg);
     });
-    client.on('game_msg',function(msg) {
-      client.emit('new message',msg);
-    });
-    client.on('init_game',function(msg) {
-
-    });
-    client.on('new message', function(msg){
+    client.on('newMessage', function(msg){
       console.log('message sent was ' + msg);
+      client.broadcast.emit('newMessage',msg);
 
     });
-    client.on('timeout_check',function() {//notify the client that user they are still connected
+    client.on('timeoutCheck',function() {//notify the client that user they are still connected
       client.emit('timeout_check');
     });
     client.on('disconnect', function(){
