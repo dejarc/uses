@@ -165,6 +165,6 @@ function initNameSpace(user_id,send_res) {
   });
   send_res("requested namespace " + user_id + " has been created.");
 }
-socket.on('connection',function(client) {
-  console.log("someone connected");
-});
+// socket.on('connection',function(client) {
+//   console.log("someone connected");
+// });
