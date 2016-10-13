@@ -5,7 +5,12 @@ angular.module('myApp', [
   'ngRoute',
   'firebase',
   'myApp.home',
-  'myApp.dashboard'
+  'myApp.dashboard',
+  'myApp.logs',
+  'myApp.settings',
+  'myApp.addModule',
+  'myApp.contact',
+  'myApp.about'
 ])
 .run(["$rootScope", "$location", "Auth", function($rootScope, $location, Auth) {
   $rootScope.$on("$routeChangeSuccess", function(event) {
@@ -38,6 +43,42 @@ angular.module('myApp', [
     .when('/dashboard', {
       templateUrl: 'view/dashboard.html',
       controller: 'DashboardCtrl',
+      resolve: {
+        // controller will not be loaded until $waitForSignIn resolves
+        // Auth refers to our $firebaseAuth wrapper in the factory below
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForSignIn returns a promise so the resolve waits for it to complete
+          return Auth.$requireSignIn();
+        }]
+      }
+    })
+    .when('/logs', {
+      templateUrl: 'view/logs.html',
+      controller: 'LogsCtrl',
+      resolve: {
+        // controller will not be loaded until $waitForSignIn resolves
+        // Auth refers to our $firebaseAuth wrapper in the factory below
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForSignIn returns a promise so the resolve waits for it to complete
+          return Auth.$requireSignIn();
+        }]
+      }
+    })
+    .when('/settings', {
+      templateUrl: 'view/settings.html',
+      controller: 'SettingsCtrl',
+      resolve: {
+        // controller will not be loaded until $waitForSignIn resolves
+        // Auth refers to our $firebaseAuth wrapper in the factory below
+        "currentAuth": ["Auth", function(Auth) {
+          // $waitForSignIn returns a promise so the resolve waits for it to complete
+          return Auth.$requireSignIn();
+        }]
+      }
+    })
+    .when('/addModule', {
+      templateUrl: 'view/add-module.html',
+      controller: 'AddModuleCtrl',
       resolve: {
         // controller will not be loaded until $waitForSignIn resolves
         // Auth refers to our $firebaseAuth wrapper in the factory below
