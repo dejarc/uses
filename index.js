@@ -23,6 +23,7 @@ http.listen(port, function(){
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+app.use('/bower_components', express.static(__dirname + '/app/bower_components'));
 app.use('/nm', express.static(__dirname + '/node_modules'));
 app.use('/css', express.static(__dirname + '/public/templates/css'));
 app.get('/home', function(req, res){
