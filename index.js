@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.use('/nm', express.static(__dirname + '/node_modules'));
 app.use('/css', express.static(__dirname + '/public/templates/css'));
-app.get('/', function(req, res){
+app.get('/home', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
 });
 app.post('/sendKandyMsg',function(req,res) {
