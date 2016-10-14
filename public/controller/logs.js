@@ -20,6 +20,7 @@ angular.module('myApp.logs', ['ngRoute'])
 	    		$scope.currentModuleLogs = $firebaseArray(query);
 	    	} else {
 	    		$scope.currentModuleLabel = "-";
+	    		$scope.currentModuleLogs = [];
 	    	}
 	    }
 
