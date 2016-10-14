@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "siciothackathon",
+  "private_key_id": "615e2f5c53d679fc653c15e04550a9b6af4c82e6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC8IVcC7c0tOp7E\ne+T/J5B876HEcW/cnjPr27vIcsLD1dpDBNWbnhN3alKSJagJk32wMS/I1Q6GmTUq\n92vp85ItxuBPVHM08hrhZGcTeLXQBc86mwwjXiNnUaDscAnDXX+zzDZ8WFE8Wg7U\nia5+4Tcxj/NM6VjueUNkFbZz+xTlRLiVnLomRDN7FZZOrl+p/NmIw8ENyuQ2XH6A\nmKP9broo2sG2aqkDJ9iZ3H/kX/U0WjDqF/Hgc/ieEYhF7nfd2QS5Pa23Om4MxZEE\nUP5DxRR74ytkwYhaYR7STcIXHpzbP5Suc+0HFnDRyOwwkfzMLJFNcIfTk7H+D4J+\ndOaKLMtdAgMBAAECggEARXFNC/C5XquXtVFCOwjgpa1Smg+BSf8/jR0j2J6708vZ\ncAmVy4ZzCw49AmNR/o7pwyK0z74NSZO982k29TmKSMlzPPUgPXfsgiwsfBx/iBTM\n5IYc2eVCzj1sWDoW8H1PyQ9lQUrcWZmohb14oq8BT5MiLM6pnAU44fW9zlvs3591\n56fpJc8Yq5FKNM2AJjHMUz3wR9zwL5xNrsZrPUI24kkNBJZCB7L8K8nMavYdS+Cu\ndlg5xAnI1sXjKM5go0WtRsmksX8JpE3lpFqFibAGxOBjme636CdtHtpjUBUEutAp\nr0ysYtG/bsf05tGZ8EXBEbD584CdHNdNDI73ICFNQQKBgQD5ZtNJ9STG5bUtPIjn\n4tahKgIskYS/ah7NLRQDw1odDfl1mj4g4ZTBmvPedNKuc17adMvMcGFMMEmq2Qay\niLFdBnnUsj9ZPYOU30ez7zCgbeHgojFA3SCyLquucNzjpLPC+k9GgK9OWdMN1YQY\npDYu209ry2i4OHqfv2UZmLGdkQKBgQDBG4ddD9E0RyFiPoWL40crHtiR9VW7Ld6V\nyjWw9g0/LjRNhXdlY7GMKAsCw9tJlws1MoEcN7nmEMZEiI/r1dWKQMWRTPySa22F\njhuRQHI0Jfj9hqG981Zxi+bhz8zHYn8HwQH0N1RTtABI+emjaf1VZ02R9SfjwWhg\nipgCtjGbDQKBgBA3HEOxuZto8fen+OrCt9uwpIWLTIs5dhk29hcsi15aOz7nMWTn\n5ckUrwhmphALlj4z29BF+j1+4jtGcwYGlymKMz+d+zptInH6dmn/gjTcEBSP1w31\nkpujJyxnUCVI3xstNRxLX5qDgpJisHz9qDwxrB9BEWTw3yAlzIf2go3RAoGAV3NP\nDt7t393iiWpE8j+/6BA1BYx0AatZJL6JKBWVlCopd33cvyaxrgYoTl1B/oaPhczU\nWWIHJuAr2bd6bdPNu6lvj0itDOXnmFbttw7XaTRVGQMSVkJPwGYZ7eM8GoNJgcpv\nRxiTcMCQbHv4yY9jMXzxzQqXwPXCfg3lnzzBJDUCgYAHDKzJ/mO3Vd5GwpHnkSu7\n4wHGTRHIowBbbGVj/EdSzmaiP5UZ4cij/UfCnIxstYScZ26SWV0boGGGEi5NYGgZ\nbtVocxxpW2kdfASMfC3pkH9p3Sy0/0B3b9j7TGUW05ZFiflCI+05P3xPRncA5IEo\nvU0wKo/upjTS7vPWXpJZIQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "nodejs@siciothackathon.iam.gserviceaccount.com",
+  "client_id": "106574550107736875088",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nodejs%40siciothackathon.iam.gserviceaccount.com"
+}

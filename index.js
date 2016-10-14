@@ -5,6 +5,7 @@ var path = require("path");
 var http = require('http').Server(app);
 var io = require('socket.io');
 var Kandy = require('kandy');
+var firebase = require('firebase');
 var socket = io(http);
 var temp = 0;
 var connected = false;
@@ -18,6 +19,11 @@ function handleError(res, reason, message, code) {
 }
 http.listen(port, function(){
   console.log('listening on port ' + port);
+});
+
+firebase.initializeApp({
+  serviceAccount: "siciothackathon-615e2f5c53d6.json",
+  databaseURL: "https://siciothackathon.firebaseio.com"
 });
 
 app.use(bodyParser.urlencoded({extended:false}));
