@@ -7,13 +7,11 @@ angular.module('myApp.sidebar', ['ngRoute'])
     profileRef.once('value').then(function(snapshot) {
         var firstname = snapshot.val().firstname;
         var lastname = snapshot.val().lastname;
-        $scope.$apply(function() {
-            if (firstname && lastname) {
-                $scope.username = firstname + " " + lastname;
-            } else {
-                $scope.username = "User Settings";
-            }
-        });
+        if (firstname && lastname) {
+            $scope.username = firstname + " " + lastname;
+        } else {
+            $scope.username = "User Settings";
+        }
     });
 
     $scope.isActiveMenu = function(path) {
