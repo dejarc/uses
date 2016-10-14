@@ -96,4 +96,8 @@ angular.module('myApp', [
 .factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
     return $firebaseAuth();
   }
+])
+.factory("CurrentUserRef", ["$firebaseAuth", function($firebaseAuth) {
+    return firebase.database().ref('users/' + $firebaseAuth().$getAuth().uid);
+  }
 ]);

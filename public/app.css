@@ -28,7 +28,7 @@
 	padding: 0px;
 }
 
-.dropdown-toggle {
+.dropdown-toggle, a {
     cursor: pointer;
 }
 

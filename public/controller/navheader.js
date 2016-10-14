@@ -2,15 +2,28 @@
  
 angular.module('myApp.sidebar', ['ngRoute'])
 // Home controller
-.controller('SidebarCtrl', ["$scope", "$location", "Auth", function($scope, $location, Auth) {
-  $scope.isActiveMenu = function(path) {
-    return  path == $location.$$path;
-  }
+.controller('SidebarCtrl', ["$scope", "$location", "Auth", "CurrentUserRef", function($scope, $location, Auth, CurrentUserRef) {
+    var profileRef = CurrentUserRef.child('profile');
+    profileRef.once('value').then(function(snapshot) {
+        var firstname = snapshot.val().firstname;
+        var lastname = snapshot.val().lastname;
+        $scope.$apply(function() {
+            if (firstname && lastname) {
+                $scope.username = firstname + " " + lastname;
+            } else {
+                $scope.username = "User Settings";
+            }
+        });
+    });
 
-  $scope.signOut = function() {
-  	Auth.$signOut();
-  	$location.path('/home');
-  }
+    $scope.isActiveMenu = function(path) {
+        return  path == $location.$$path;
+    }
+
+    $scope.signOut = function() {
+        Auth.$signOut();
+        $location.path('/home');
+    }
 }]);
 
 // $("#menu-toggle").click(function(e) {
