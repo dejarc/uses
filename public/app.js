@@ -13,7 +13,14 @@ angular.module('myApp', [
   'myApp.about',
   'myApp.sidebar'
 ])
-.run(["$rootScope", "$location", "Auth", function($rootScope, $location, Auth) {
+.run(["$rootScope", "$location", "$window", "Auth", function($rootScope, $location, $window, Auth) {
+  var forceSSL = function () {
+      if ($location.protocol() !== 'https' && !($location.host() === "localhost" || $location.host() === "127.0.0.1")) {
+          $window.location.href = $location.absUrl().replace('http', 'https');
+      }
+  };
+  forceSSL();
+
   $rootScope.$on("$routeChangeSuccess", function(event) {
     if (Auth.$getAuth() && $location.$$path == '/home') {
       $location.path("/dashboard");
