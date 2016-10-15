@@ -17,7 +17,7 @@ angular.module('myApp.settings', ['ngRoute'])
 	};
 	
 	$scope.saveSettings = function() {
-		alert("SAVE STUFF!");
+		alert("SAVE STUFF! (not yet implemented)");
 	};
 
 	// Check that service workers are supported, if so, progressively
