@@ -19,7 +19,12 @@ angular.module('myApp.settings', ['ngRoute'])
 	// Save threshold settings for modules
 	$scope.saveSettings = function() {
 		for (var i = 0; i < $scope.modules.length; i++) {
-			$scope.modules.$save(i);
+			$scope.modules.$save(i).then(function() {
+			  document.getElementById("save-success").style.display = 'inline';
+			}, function(error) {
+			  console.log("Error:", error);
+			  document.getElementById("save-failure").style.display = 'inline';
+			});;
 		}
 	};
 
