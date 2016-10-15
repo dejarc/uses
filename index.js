@@ -142,6 +142,27 @@ function initNameSpace(user_id,send_res) {
   });
   send_res("requested namespace " + user_id + " has been created.");
 }
+socket.on('testPushNotifications', function(client) {
+  // curl --header "Authorization: key=AIzaSyBXg0iMARMAPHsuo6iUPfIrPmUWUgHlDLE" 
+  // --header "Content-Type:application/json" https://android.googleapis.com/gcm/send 
+  // -d "{\"registration_ids\":[\"eiaqRXl2MAw:APA91bELJeyIN0q_M2c7T-AIrVKMpil-OPO6giuzQl4y81Y3PFHqvZtLQOH3B78WiyQGlF0znG_CUgYSnu6WcnEXr4X_uoyW7cOufQ8_kA7eHkNH9Bigf4xMTZ9Qu1V7ma1ZkUmKTTtV\"]}"
+  console.log("RegId: " + client.registration_ids);
+  http.request({
+    headers: {
+      'Authorization': 'key=AIzaSyBXg0iMARMAPHsuo6iUPfIrPmUWUgHlDLE',
+      'Content-Type': 'application/json'
+    },
+    uri: "https://android.googleapis.com/gcm/send",
+    method: "POST",
+    data: {
+      "registration_ids": ["eiaqRXl2MAw:APA91bELJeyIN0q_M2c7T-AIrVKMpil-OPO6giuzQl4y81Y3PFHqvZtLQOH3B78WiyQGlF0znG_CUgYSnu6WcnEXr4X_uoyW7cOufQ8_kA7eHkNH9Bigf4xMTZ9Qu1V7ma1ZkUmKTTtV"],
+      "message": "Meesage1",
+      "data": {
+        "message": "Message2"
+      }
+    }
+  });
+});
 // socket.on('connection',function(client) {
 //   console.log("someone connected");
 // });

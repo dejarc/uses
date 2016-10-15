@@ -18,7 +18,7 @@
 	        </h1>
 					
 			<div class="row" style="margin-top:15px;">
-	            <div class="col-lg-4">
+	            <div class="col-lg-12">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
 	                        <h3 class="panel-title"><i class="fa fa-cogs fa-fw"></i> Module Settings </h3>
@@ -45,6 +45,9 @@
 	                        <div class="text-right">
 								<button ng-click="pushButton()" style="float:left;" class="js-push-button btn btn-secondary btn btn-outline-primary" disabled>
 									Enable Push Messages
+								</button>
+								<button ng-click="pushNotificationTest()" style="float:left;" class="btn btn-secondary btn btn-outline-primary">
+									Send a push to aaron
 								</button>
 								<div class="js-curl-command"></div>
 	                            <button ng-click="saveSettings()" type="button" class = "btn btn-secondary btn btn-outline-primary">Save</button>
