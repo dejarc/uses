@@ -16,8 +16,11 @@ angular.module('myApp.settings', ['ngRoute'])
 		}
 	};
 	
+	// Save threshold settings for modules
 	$scope.saveSettings = function() {
-		alert("SAVE STUFF! (not yet implemented)");
+		for (var i = 0; i < $scope.modules.length; i++) {
+			$scope.modules.$save(i);
+		}
 	};
 
 	// Check that service workers are supported, if so, progressively
