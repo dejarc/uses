@@ -5,13 +5,13 @@ self.addEventListener('push', function(event) {
 
   var title = 'Hello';
   var body = 'Star';
-  //var icon = '/images/icon-192x192.png';
+//  var icon = '/images/icon-192x192.png';
   var tag = 'simple-push-demo-notification-tag';
 
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
-      //icon: icon,
+ //     icon: icon,
       tag: tag
     })
   );
