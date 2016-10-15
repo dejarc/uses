@@ -8,7 +8,7 @@ angular.module('myApp.settings', ['ngRoute'])
 		$scope.modules = $firebaseArray(modulesRef);
 		var firebaseObj = firebase.database().ref();
 	
-		// Save threshold settings for modules
+		// Save label and threshold settings for modules
 		$scope.saveSettings = function() {
 			for (var i = 0; i < $scope.modules.length; i++) {
 				$scope.modules.$save(i).then(function() {
