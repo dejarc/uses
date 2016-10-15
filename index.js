@@ -87,7 +87,7 @@ app.post('/nspCreate',function(req,res) {//to check for the existence of a uniqu
         nsp_msg += "none";
       }
       console.log(nsp_msg);//monitor the current conversations
-      res.status(200).json({"active_socket": true, "port":port});
+      res.status(200).json({"active_socket": true});
     };
     //if namespace socket has not been created,must create now
     all_users[user_id] ? send_res(spc_msg) : initNameSpace(user_id,send_res);
