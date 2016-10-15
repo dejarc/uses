@@ -2,7 +2,10 @@
  
 angular.module('myApp.settings', ['ngRoute'])
 // Home controller
-.controller('SettingsCtrl', ["$scope", function($scope) {
+.controller('SettingsCtrl', ["$scope", "$firebaseArray", "CurrentUserRef", function($scope, $firebaseArray, CurrentUserRef) {
+		
+	var modulesRef = CurrentUserRef.child('modules');
+    $scope.modules = $firebaseArray(modulesRef);
 	var firebaseObj = firebase.database().ref();
 	
 	$scope.pushButton = function() {
@@ -11,6 +14,10 @@ angular.module('myApp.settings', ['ngRoute'])
 		} else {
 		  subscribe();
 		}
+	};
+	
+	$scope.saveSettings = function() {
+		alert("SAVE STUFF!");
 	};
 
 	// Check that service workers are supported, if so, progressively

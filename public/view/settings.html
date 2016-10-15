@@ -3,12 +3,44 @@
 	<div id="page-wrapper" ng-controller="SettingsCtrl">
 	    <div class="container-fluid">
 	        <!-- Page Heading -->
-			<div class="row">
-				<button ng-click="pushButton()" class="js-push-button" disabled>
-					Enable Push Messages
-				</button>
-				<div class="js-curl-command"></div>
-			</div>
+			
+			<div class="row" style="margin-top:15px;">
+	            <div class="col-lg-4">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h3 class="panel-title"><i class="fa fa-cogs fa-fw"></i> Module Settings </h3>
+	                    </div>
+	                    <div class="panel-body">
+	                        <div class="table-responsive">
+	                            <table class="table table-bordered table-hover table-striped">
+	                                <thead>
+	                                    <tr>
+	                                        <th>Module</th>
+	                                        <th>Value</th>
+	                                        <th>Threshold</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                	<tr ng-repeat="module in modules">
+	                                		<td>{{module.label}}</td>
+	                                		<td>{{module.currentValue}}</td>
+	                                		<td><input type="text" class="form-control"></td>
+	                                	</tr>
+	                                </tbody>
+	                            </table>
+	                        </div>
+	                        <div class="text-right">
+								<button ng-click="pushButton()" style="float:left;" class="js-push-button btn btn-secondary btn btn-outline-primary" disabled>
+									Enable Push Messages
+								</button>
+								<div class="js-curl-command"></div>
+	                            <button ng-click="saveSettings()" type="button" class = "btn btn-secondary btn btn-outline-primary">Save</button>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+			
 	    </div>
 	    <!-- /.container-fluid -->
 
