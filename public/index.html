@@ -20,6 +20,10 @@
 
   <link href="font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="app.css" rel="stylesheet" >
+
+  <!-- Manifest for push messages -->
+  <link rel="manifest" href="manifest.json">
+
 </head>
 <body>
 
@@ -28,6 +32,11 @@
   <![endif]-->
   <div ng-view></div>
 
+  
+  <!-- JS for push messages -->
+  <script src="pushjs/push.js"></script>
+  <script src="pushjs/service-worker.js"></script>
+	
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
