@@ -12,14 +12,21 @@ angular.module('myApp.settings', ['ngRoute'])
 		$scope.saveSettings = function() {
 			for (var i = 0; i < $scope.modules.length; i++) {
 				$scope.modules.$save(i).then(function() {
-				  document.getElementById("save-success").style.display = 'inline';
+					//document.getElementById("save-success").style.display = 'inline';
+					$('#save-success').slideDown();
 				}, function(error) {
-				  console.log("Error:", error);
-				  document.getElementById("save-failure").style.display = 'inline';
+					console.log("Error:", error);
+					//document.getElementById("save-failure").style.display = 'inline';
+					$('#save-failure').slideDown();
 				});;
 			}
 		};
 
+		// Allows for dismissal of saving alerts
+		$('.alert').on('click','.close',function(){
+			$(this).closest('.alert').slideUp();
+		});
+		
 		// Push Notification Enabler
 		$scope.pushButton = function() {
 			if (isPushEnabled) {
