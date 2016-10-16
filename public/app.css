@@ -36,6 +36,13 @@
     text-align: center;
 }
 
+.saveAlert {
+	margin-top: 5px; 
+	position: fixed; 
+	z-index: 9999; 
+	display: none;
+}
+
 
 /*!
  * Start Bootstrap - SB Admin (http://startbootstrap.com/)
