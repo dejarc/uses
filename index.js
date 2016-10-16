@@ -80,7 +80,7 @@ app.post('/sendKandyMsg',function(req,res) {
   }
 });
 app.post('/nspCreate',function(req,res) {//to check for the existence of a unique user channel
-  console.log("The req is: " + req);
+  console.log("The req.body is: " + req.body);
   if(!(req.body && req.body.user_id)) {
     handleError(res, "no user information was sent", "please send valid user information");
   } else {
