@@ -194,7 +194,7 @@ function initNameSpace(user_id,send_res) {
 
     // The web client has chosen a module to add. Sent the module to the Pi.
     client.on('addBluetoothDevice', function(moduleToAdd) {
-      client.broadcast.emit('addBluetoothDevice', moduleToAdd);
+      nsp.emit('addBluetoothDevice', moduleToAdd);
     });
   });
   send_res("requested namespace " + user_id + " has been created.");

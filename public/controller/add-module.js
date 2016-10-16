@@ -7,10 +7,12 @@ angular.module('myApp.addModule', ['ngRoute'])
 	$scope.bluetoothDevices = [];
 	$scope.currentModule = "";
 
-	var intervalPromise = $interval(function() {
+	$scope.refreshNewModules = function() {
 		console.log("Fetching bluetooth");
 		socket.emit('receiveBluetoothDevices', {});
-	}, 5000);
+	};
+
+	$scope.refreshNewModules();
 
 	socket.on('receiveBluetoothDevices', function(data) {
 		console.log("Received bluetooth: " + data);
@@ -21,7 +23,4 @@ angular.module('myApp.addModule', ['ngRoute'])
 		if (moduleToAdd) socket.emit('addBluetoothDevice', moduleToAdd);
 	};
 
-	$scope.$on('$destroy',function(){
-	    if(intervalPromise) $interval.cancel(intervalPromise);   
-	});
 }]);
