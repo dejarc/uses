@@ -10,7 +10,7 @@ angular.module('myApp.addModule', ['ngRoute'])
 	var intervalPromise = $interval(function() {
 		console.log("Fetching bluetooth");
 		socket.emit('receiveBluetoothDevices', {});
-	}, 1000);
+	}, 5000);
 
 	socket.on('receiveBluetoothDevices', function(data) {
 		console.log("Received bluetooth: " + data);

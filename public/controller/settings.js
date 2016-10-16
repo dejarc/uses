@@ -68,11 +68,9 @@ angular.module('myApp.settings', ['ngRoute'])
 
 			var mergedEndpoint = endpointWorkaround(subscription);
 
-			socket.emit('notificationSubscription', subscription);
-
 			// This is just for demo purposes / an easy to test by
 			// generating the appropriate cURL command
-			showCurlCommand(mergedEndpoint);
+			// showCurlCommand(mergedEndpoint);
 		}
 
 		// NOTE: This code is only suitable for GCM endpoints,
@@ -154,6 +152,7 @@ angular.module('myApp.settings', ['ngRoute'])
 		        isPushEnabled = true;
 		        pushButton.textContent = 'Disable Push Messages';
 		        pushButton.disabled = false;
+			    socket.emit('notificationSubscription', subscription);
 
 		        // TODO: Send the subscription subscription.endpoint
 		        // to your server and save it to send a push message
@@ -225,6 +224,7 @@ angular.module('myApp.settings', ['ngRoute'])
 		        // push messages
 		        pushButton.textContent = 'Disable Push Messages';
 		        isPushEnabled = true;
+
 		      })
 		      .catch(function(err) {
 		         console.log('Error during getSubscription()', err);

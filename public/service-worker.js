@@ -3,18 +3,23 @@
 self.addEventListener('push', function(event) {
   console.log('Received a push message', event);
 
-  var title = 'Hello';
-  var body = 'Star';
-//  var icon = '/images/icon-192x192.png';
-  var tag = 'simple-push-demo-notification-tag';
+  var title = "", body = "";
 
-  event.waitUntil(
-    self.registration.showNotification(title, {
-      body: body,
- //     icon: icon,
-      tag: tag
-    })
-  );
+  try {
+    var data = JSON.parse(event.data.text());
+    title = data.title;
+    body = data.body;
+
+    //  var icon = '/images/icon-192x192.png';
+    if (title && body) {
+      event.waitUntil(
+        self.registration.showNotification(title, {
+        body: body
+        // icon: icon
+        })
+      );
+    }
+  } catch (e) {}
 });
 
 self.addEventListener('notificationclick', function(event) {

@@ -157,11 +157,17 @@ function initNameSpace(user_id,send_res) {
           endpoint: data.endpoint,
           keys: data.keys
         };
-        webpush.sendNotification(nsp.pushSubscriptionInfo, "You will now start receiving notifications!");
+        webpush.sendNotification(nsp.pushSubscriptionInfo, JSON.stringify(
+          {
+            title: "Notification from Tess!",
+            message: "You will receive notifications!"
+          }
+        ));
       }
     });
     client.on('sendPushNotification', function(jsonObj) {
         /* jsonObj can contain the following information.
+        Refer to https://www.npmjs.com/package/web-push
         A notification has an associated title which is a DOMString.
         A notification has an associated body which is a DOMString.
         A notification has an associated direction which is one of auto, ltr, and rtl.
@@ -170,7 +176,7 @@ function initNameSpace(user_id,send_res) {
         A notification has an associated data.
         A notification has an associated timestamp which is a DOMTimeStamp representing the time, in milliseconds since 00:00:00 UTC on 1 January 1970, of the event for which the notification was created.
         */
-        webpush.sendNotification(nsp.pushSubscriptionInfo, jsonObj);
+        webpush.sendNotification(nsp.pushSubscriptionInfo, JSON.stringify(jsonObj));
     });
 
     // Web clients emit('getBluetoothDevices') to query the pi for surrounding bluetooth devices.
@@ -182,7 +188,7 @@ function initNameSpace(user_id,send_res) {
     client.on('receiveBluetoothDevices', function(data) {
       // since we have no data... FAKE DATA! :D
       console.log("receiveBluetoothDevices.");
-      var data = ["module1", "module2", "module3", "module4"];
+      var data = [{label: "module1"}, {label: "module2"}, {label: "module3"}, {label: "module4"}];
       nsp.emit('receiveBluetoothDevices', data);
     });
 
