@@ -1,5 +1,6 @@
 'use strict';
  var chartData = [];
+ var dataLoaded = false;
   
 angular.module('myApp.logs', ['ngRoute'])
 // Home controller
@@ -24,18 +25,20 @@ angular.module('myApp.logs', ['ngRoute'])
 	    		$scope.currentModuleLogs = [];
 	    	}
 			
-			$scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp").limitToLast($scope.logLimit).once('value', function(snaps) { 
-				snaps.forEach(function(log){
-					var date = new Date(log.val().timestamp);
-					//console.log(date.toLocaleDateString() + " " + log.val().value);
-					var string = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-					console.log(string);
-					chartData.push({time: string, value: log.val().value});
+			if(dataLoaded){
+				$scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp").limitToLast($scope.logLimit).once('value', function(snaps) { 
+					snaps.forEach(function(log){
+						var date = new Date(log.val().timestamp);
+						//console.log(date.toLocaleDateString() + " " + log.val().value);
+						var string = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+						chartData.push({time: string, value: log.val().value});
+					});
+					document.getElementById('line-chart').innerHTML = "";
+					drawGraph();
+					chartData = [];
 				});
-				document.getElementById('line-chart').innerHTML = "";
-				drawGraph();
-				chartData = [];
-			});
+			}
+			dataLoaded = true;
 	    }
 
 	    $scope.millisecondsToDate = function(milliseconds) {
