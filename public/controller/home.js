@@ -20,30 +20,11 @@ angular.module('myApp.home', ['ngRoute'])
 			var uid = result.uid;
       		$location.path("/dashboard");
 
-   //    		var data = {
-   //    			user_id: uid
-   //    		};
+      		var data = {
+      			user_id: uid
+      		};
 
-			// $http.post('https://uses.herokuapp.com/nspCreate', data).then(
-			// 	function(success) {
-			// 		console.log("Success: " + success);
-			// 	}, 
-			// 	function(error) {
-			// 		console.log("Error: " + error);
-			// 	}
-			// );
-
-			var req = {
-				method: 'POST',
-				url: 'https://uses.herokuapp.com/nspCreate',
-				headers: {
-					'Content-Type': undefined
-				},
-				data: { user_id: uid }
-			}
-
-
-			$http(req).then(
+			$http.post('https://uses.herokuapp.com/nspCreate', data).then(
 				function(success) {
 					console.log("Success: " + success);
 				}, 
@@ -51,6 +32,25 @@ angular.module('myApp.home', ['ngRoute'])
 					console.log("Error: " + error);
 				}
 			);
+
+			// var req = {
+			// 	method: 'POST',
+			// 	url: 'https://uses.herokuapp.com/nspCreate',
+			// 	headers: {
+			// 		'Content-Type': undefined
+			// 	},
+			// 	data: { user_id: uid }
+			// }
+
+
+			// $http(req).then(
+			// 	function(success) {
+			// 		console.log("Success: " + success);
+			// 	}, 
+			// 	function(error) {
+			// 		console.log("Error: " + error);
+			// 	}
+			// );
 
 		}).catch(function(error){ 
 			var errorCode = error.code;
