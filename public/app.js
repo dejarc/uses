@@ -53,7 +53,7 @@ angular.module('myApp', [
     })
     .when('/dashboard', {
       templateUrl: 'view/dashboard.html',
-      controller: 'DashboardCtrl'/*,//removed for testing purposes, will add back in
+      controller: 'DashboardCtrl',
       resolve: {
         // controller will not be loaded until $waitForSignIn resolves
         // Auth refers to our $firebaseAuth wrapper in the factory below
@@ -61,7 +61,7 @@ angular.module('myApp', [
           // $waitForSignIn returns a promise so the resolve waits for it to complete
           return Auth.$requireSignIn();
         }]
-      }*/
+      }
     })
     .when('/logs', {
       templateUrl: 'view/logs.html',
