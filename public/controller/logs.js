@@ -31,7 +31,7 @@ angular.module('myApp.logs', ['ngRoute'])
 					snaps.forEach(function(log){
 						var date = new Date(log.val().timestamp);
 						//console.log(date.toLocaleDateString() + " " + log.val().value);
-						var string = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+						var string = buildMorrisTimeString(date);
 						chartData.push({time: string, value: log.val().value});
 					});
 					document.getElementById('line-chart').innerHTML = "";
@@ -57,6 +57,24 @@ angular.module('myApp.logs', ['ngRoute'])
 	
 ]);
 
+// Builds a time string for morris.js to draw a graph line with
+function buildMorrisTimeString(date) {
+	// Add YYYY-MM-DD
+	var dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " ";
+	// A
+	if (date.getHours() > 9) {
+		dateString += date.getHours() + ":";
+	} else {
+		dateString += "0" + date.getHours() + ":";
+	}
+	if (date.getMinutes() > 9) {
+		dateString += date.getMinutes();
+	} else {
+		dateString += "0" + date.getMinutes();
+	}			
+	return dateString;
+}
+
 // Draws a line graph in the given element id
 function drawGraph() {
 	new Morris.Line({
@@ -71,7 +89,9 @@ function drawGraph() {
 	  ykeys: ['value'],
 	  // Labels for the ykeys -- will be displayed when you hover over the
 	  // chart.
-	  labels: ['Value']
+	  ymin: 'auto',
+	  labels: ['Value'],
+	  resize: 'true'
 	});
 }
 
