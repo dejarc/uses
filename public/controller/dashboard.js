@@ -2,14 +2,15 @@
  
 angular.module('myApp.dashboard', ['ngRoute'])
 // Home controller
-.controller('DashboardCtrl', ["$scope","$document", "$firebaseArray", "Auth", "CurrentUserRef", "socket", 
-    function($scope,$document, $firebaseArray, Auth, CurrentUserRef, socket) {
+.controller('DashboardCtrl', ["$scope", "$firebaseArray", "Auth", "CurrentUserRef", "socket", 
+    function($scope, $firebaseArray, Auth, CurrentUserRef, socket) {
         var modulesRef = CurrentUserRef.child('modules');
         $scope.modules = $firebaseArray(modulesRef);
         $scope.isLive = false;
         $scope.liveurl = "";
         var drawables = {};//create a new drawables object
-        var display = $document.getElementById('videoDisplay').getContext('2d');
+        var display = document.getElementById('videoDisplay').getContext('2d');
+        angular.element
         drawables.image_arr = [];
         drawables.buf_size = 0;//hold the number of ready-to-display images
         $scope.toggleLiveStream = function() {
@@ -59,7 +60,11 @@ angular.module('myApp.dashboard', ['ngRoute'])
            var nxt_loop = function() {
              displayLoop();
            };
-           setTimeout(nxt_loop, 1000/5);//set this loop according to the number of frames per second
+           var timeoutPromise = setTimeout(nxt_loop, 1000/5);//set this loop according to the number of frames per second
+
+          $scope.$on('$destroy',function(){
+              clearTimeout(timeoutPromise);
+          });
        })();
 
         /* Use this for logs
