@@ -1,6 +1,6 @@
 <div id="wrapper">
 	<ng-include src="'view/navheader.html'"></ng-include>
-	<div id="page-wrapper" ng-controller="SettingsCtrl">
+	<div id="page-wrapper">
 	    <div class="container-fluid">
 	        <!-- Page Heading -->
 			
@@ -28,9 +28,9 @@
 	                            <table class="table table-bordered table-hover table-striped">
 	                                <thead>
 	                                    <tr>
-	                                        <th>Module</th>
-	                                        <th>Current Value</th>
-	                                        <th>Threshold Value</th>
+	                                        <th class="col-md-6">Module</th>
+	                                        <th class="col-md-3">Current Value</th>
+	                                        <th class="col-md-3">Threshold Value</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
@@ -45,9 +45,6 @@
 	                        <div class="text-right">
 								<button ng-click="pushButton()" style="float:left;" class="js-push-button btn btn-secondary btn btn-outline-primary" disabled>
 									Enable Push Messages
-								</button>
-								<button ng-click="pushNotificationTest()" style="float:left;" class="btn btn-secondary btn btn-outline-primary">
-									Send a push to aaron
 								</button>
 								<div class="js-curl-command"></div>
 	                            <button ng-click="saveSettings()" type="button" class = "btn btn-secondary btn btn-outline-primary">Save</button>

@@ -108,8 +108,8 @@ angular.module('myApp', [
     return firebase.database().ref('users/' + $firebaseAuth().$getAuth().uid);
   }
 ])
-.factory('socket', function ($rootScope) {
-  var socket = io.connect();
+.factory('socket', ["$rootScope", "$firebaseAuth", function($rootScope, $firebaseAuth) {
+  var socket = io("https://uses.herokuapp.com/" + $firebaseAuth().$getAuth().uid);
   return {
     on: function (eventName, callback) {
       socket.on(eventName, function () {  
@@ -130,4 +130,4 @@ angular.module('myApp', [
       })
     }
   };
-});
+}]);

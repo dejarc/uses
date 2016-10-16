@@ -1,6 +1,6 @@
 <div id="wrapper">
 	<ng-include src="'view/navheader.html'"></ng-include>
-	<div id="page-wrapper" ng-controller="LogsCtrl">
+	<div id="page-wrapper">
 	    <div class="container-fluid">
 	        <div class="row">
 	            <div class="col-lg-12">
@@ -10,11 +10,14 @@
 	            </div>
 	        </div>
 	        <div class="row">
-	            <div class="col-lg-12">
+	            <div class="col-lg-6">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
 	                        <h3 class="panel-title"><i class="fa fa-fw fa-bar-chart-o"></i> Module Readings </h3>
 	                    </div>
+						<!--DATA CHART-->
+						<div id="myfirstchart" style="height: 250px;"></div>
+
 	                    <div class="panel-body">
 							<select class="form-control" 
 									ng-model="currentModule" 
@@ -26,16 +29,16 @@
 	                            <table class="table table-bordered table-hover table-striped">
 	                                <thead>
 	                                    <tr>
-	                                        <th>Time</th>
-	                                        <th>Value</th>
-	                                        <th>Triggered</th>
+	                                        <th class="col-md-4">Time</th>
+	                                        <th class="col-md-1"><center>Value</th>
+	                                        <th class="col-md-1"><center>Triggered</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
 	                                	<tr ng-repeat="log in currentModuleLogs">
 	                                		<td>{{millisecondsToDate(log.timestamp)}}</td>
-	                                		<td>{{log.value}}</td>
-	                                		<td><i ng-if="log.triggered" class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i></td>
+	                                		<td><center>{{log.value}}</td>
+	                                		<td><center><i ng-if="log.triggered" class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i></td>
 	                                	</tr>
 	                                </tbody>
 	                            </table>
@@ -49,4 +52,30 @@
 
 	</div>
 	<!-- /#page-wrapper -->
+	<script>
+	new Morris.Line({
+	  // ID of the element in which to draw the chart.
+	  element: 'myfirstchart',
+	  // Chart data records -- each entry in this array corresponds to a point on
+	  // the chart.
+	  data: [
+		{ year: '2008', value: 20 },
+		{ year: '2009', value: 10 },
+		{ year: '2010', value: 5 },
+		{ year: '2011', value: 25 },
+		{ year: '2012', value: 11 },
+		{ year: '2013', value: 12 },
+		{ year: '2014', value: 13 },
+		{ year: '2015', value: 1 },
+		{ year: '2016', value: 10 }
+	  ],
+	  // The name of the data record attribute that contains x-values.
+	  xkey: 'year',
+	  // A list of names of data record attributes that contain y-values.
+	  ykeys: ['value'],
+	  // Labels for the ykeys -- will be displayed when you hover over the
+	  // chart.
+	  labels: ['Value']
+	});
+	</script>
 </div>

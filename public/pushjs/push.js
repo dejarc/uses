@@ -60,7 +60,7 @@ function showCurlCommand(mergedEndpoint) {
   var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
     '" --header "Content-Type:application/json" ' + GCM_ENDPOINT +
     ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]}"';
-  
+
   console.log(curlCommand); // curlCommandDiv.textContent = curlCommand; 
 }
 
@@ -177,6 +177,7 @@ function initialiseState() {
       .then(function(subscription) {
         // Enable any UI which subscribes / unsubscribes from
         // push messages.
+        socket.emit('notificationSubscription', subscription);
         var pushButton = document.querySelector('.js-push-button');
         pushButton.disabled = false;
 
