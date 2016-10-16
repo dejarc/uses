@@ -7,13 +7,9 @@ angular.module('myApp.addModule', ['ngRoute'])
 	$scope.bluetoothDevices = [];
 	$scope.currentModule = "";
 
-	$scope.i = 0;
 	var intervalPromise = $interval(function() {
-		if ($scope.i > 3) { 
-			console.log("Fetching bluetooth");
-			socket.emit('receiveBluetoothDevices');
-		}
-		$scope.i = $scope.i + 1;
+		console.log("Fetching bluetooth");
+		socket.emit('receiveBluetoothDevices', {});
 	}, 1000);
 
 	socket.on('receiveBluetoothDevices', function(data) {

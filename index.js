@@ -177,10 +177,11 @@ function initNameSpace(user_id,send_res) {
     });
 
     // The Raspberry Pi will emit('receiveBluetoothDevices') passing in a list of bluetooth names. The list will be bounced to the web clients.
-    client.on('recieveBluetoothDevices', function(data) {
+    client.on('receiveBluetoothDevices', function(data) {
       // since we have no data... FAKE DATA! :D
+      console.log("receiveBluetoothDevices.");
       var data = ["module1", "module2", "module3", "module4"];
-      client.broadcast.emit('recieveBluetoothDevices', data);
+      client.broadcast.emit('receiveBluetoothDevices', data);
     });
 
     // The web client has chosen a module to add. Sent the module to the Pi.
