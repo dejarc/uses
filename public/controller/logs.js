@@ -57,6 +57,7 @@ angular.module('myApp.logs', ['ngRoute'])
 	
 ]);
 
+// Draws a line graph in the given element id
 function drawGraph() {
 	new Morris.Line({
 	  // ID of the element in which to draw the chart.
@@ -74,7 +75,6 @@ function drawGraph() {
 	});
 }
 
-window.setTimeout(function(){ drawGraph(); },1000);
 /*
 Users need to log into their USES account on their Pi.
 The USES information is sent to node js.
