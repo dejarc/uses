@@ -156,6 +156,7 @@ function initNameSpace(user_id,send_res) {
           endpoint: data.endpoint,
           keys: data.keys
         };
+        webpush.sendNotification(nsp.pushSubscriptionInfo, {title: "Welcome!", body: {"You will now start receiving notifications!"});
       }
     });
     client.on('sendPushNotification', function(jsonObj) {
@@ -181,7 +182,7 @@ function initNameSpace(user_id,send_res) {
       // since we have no data... FAKE DATA! :D
       console.log("receiveBluetoothDevices.");
       var data = ["module1", "module2", "module3", "module4"];
-      client.broadcast.emit('receiveBluetoothDevices', data);
+      // client.broadcast.emit('receiveBluetoothDevices', data);
     });
 
     // The web client has chosen a module to add. Sent the module to the Pi.

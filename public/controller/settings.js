@@ -58,19 +58,21 @@ angular.module('myApp.settings', ['ngRoute'])
 		}
 
 		function sendSubscriptionToServer(subscription) {
-		  // TODO: Send the subscription.endpoint
-		  // to your server and save it to send a
-		  // push message at a later date
-		  //
-		  // For compatibly of Chrome 43, get the endpoint via
-		  // endpointWorkaround(subscription)
-		  console.log('TODO: Implement sendSubscriptionToServer()');
+			// TODO: Send the subscription.endpoint
+			// to your server and save it to send a
+			// push message at a later date
+			//
+			// For compatibly of Chrome 43, get the endpoint via
+			// endpointWorkaround(subscription)
+			console.log('TODO: Implement sendSubscriptionToServer()');
 
-		  var mergedEndpoint = endpointWorkaround(subscription);
+			var mergedEndpoint = endpointWorkaround(subscription);
 
-		  // This is just for demo purposes / an easy to test by
-		  // generating the appropriate cURL command
-		  showCurlCommand(mergedEndpoint);
+			socket.emit('notificationSubscription', subscription);
+
+			// This is just for demo purposes / an easy to test by
+			// generating the appropriate cURL command
+			showCurlCommand(mergedEndpoint);
 		}
 
 		// NOTE: This code is only suitable for GCM endpoints,
@@ -207,7 +209,6 @@ angular.module('myApp.settings', ['ngRoute'])
 		      .then(function(subscription) {
 		        // Enable any UI which subscribes / unsubscribes from
 		        // push messages.
-		        socket.emit('notificationSubscription', subscription);
 		        var pushButton = document.querySelector('.js-push-button');
 		        pushButton.disabled = false;
 
