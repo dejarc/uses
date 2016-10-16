@@ -156,7 +156,7 @@ function initNameSpace(user_id,send_res) {
           endpoint: data.endpoint,
           keys: data.keys
         };
-        webpush.sendNotification(nsp.pushSubscriptionInfo, {title: "Welcome!", body: {"You will now start receiving notifications!"});
+        webpush.sendNotification(nsp.pushSubscriptionInfo, {title: "Welcome!", body: "You will now start receiving notifications!"});
       }
     });
     client.on('sendPushNotification', function(jsonObj) {
