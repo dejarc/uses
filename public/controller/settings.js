@@ -2,8 +2,8 @@
  
 angular.module('myApp.settings', ['ngRoute'])
 // Home controller
-.controller('SettingsCtrl', ["$scope", "$firebaseArray", "CurrentUserRef", "socket", 
-	function($scope, $firebaseArray, CurrentUserRef, socket) {
+.controller('SettingsCtrl', ["$scope", "$firebaseArray", "CurrentUserRef", "socket", "Auth",
+	function($scope, $firebaseArray, CurrentUserRef, socket, Auth) {
 		var modulesRef = CurrentUserRef.child('modules');
 		$scope.modules = $firebaseArray(modulesRef);
 		var firebaseObj = firebase.database().ref();
@@ -26,6 +26,9 @@ angular.module('myApp.settings', ['ngRoute'])
 		$('.alert').on('click','.close',function(){
 			$(this).closest('.alert').slideUp();
 		});
+		
+		$scope.uid = Auth.$getAuth().uid;
+		console.log(Auth.$getAuth().uid);
 
 
 
@@ -273,6 +276,8 @@ angular.module('myApp.settings', ['ngRoute'])
 			console.log('ServiceWorker registration failed: ', err);
 		  });
 		}
+		
+
 	}
 ]);
 
