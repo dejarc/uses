@@ -152,7 +152,7 @@ function initNameSpace(user_id,send_res) {
     });
     client.on('notificationSubscription', function(data) {
       if (data) {
-        console.log("Notification Subscription.")
+        console.log("Notification Subscription: " + JSON.stringify(data));
         nsp.pushSubscriptionInfo = {
           endpoint: data.endpoint,
           keys: data.keys

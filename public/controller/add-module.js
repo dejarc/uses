@@ -12,10 +12,10 @@ angular.module('myApp.addModule', ['ngRoute'])
 		socket.emit('receiveBluetoothDevices', {});
 	}, 1000);
 
-	// socket.on('receiveBluetoothDevices', function(data) {
-	// 	console.log("Received bluetooth: " + data);
-	// 	$scope.bluetoothDevices = data;
-	// });
+	socket.on('receiveBluetoothDevices', function(data) {
+		console.log("Received bluetooth: " + data);
+		$scope.bluetoothDevices = data;
+	});
 
 	$scope.addNewModule = function(moduleToAdd) {
 		if (moduleToAdd) socket.emit('addBluetoothDevice', moduleToAdd);
