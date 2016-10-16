@@ -6,6 +6,7 @@ var http = require('http').Server(app);
 var io = require('socket.io');
 var Kandy = require('kandy');
 var firebase = require('firebase');
+var webpush = require('web-push');
 var socket = io(http);
 var temp = 0;
 var connected = false;
@@ -25,6 +26,15 @@ firebase.initializeApp({
   serviceAccount: "siciothackathon-615e2f5c53d6.json",
   databaseURL: "https://siciothackathon.firebaseio.com"
 });
+
+// VAPID keys should only be generated only once. 
+const vapidKeys = webpush.generateVAPIDKeys();
+webpush.setGCMAPIKey('AIzaSyBXg0iMARMAPHsuo6iUPfIrPmUWUgHlDLE');
+webpush.setVapidDetails(
+  'mailto:nodejs@siciothackathon.iam.gserviceaccount.com',
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+);
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -70,6 +80,7 @@ app.post('/sendKandyMsg',function(req,res) {
   }
 });
 app.post('/nspCreate',function(req,res) {//to check for the existence of a unique user channel
+  console.log("The req is: " + req);
   if(!(req.body && req.body.user_id)) {
     handleError(res, "no user information was sent", "please send valid user information");
   } else {
@@ -139,30 +150,14 @@ function initNameSpace(user_id,send_res) {
       nsp.total_users -= 1;
       console.log('user disconnected there are now ' + nsp.total_users + ' users');
     });
+
+    client.on('notificationSubscription', function(data) {
+      console.log("Notification Subscription Activated.");
+      console.log(data);
+    });
   });
   send_res("requested namespace " + user_id + " has been created.");
 }
-socket.on('testPushNotifications', function(client) {
-  // curl --header "Authorization: key=AIzaSyBXg0iMARMAPHsuo6iUPfIrPmUWUgHlDLE" 
-  // --header "Content-Type:application/json" https://android.googleapis.com/gcm/send 
-  // -d "{\"registration_ids\":[\"eiaqRXl2MAw:APA91bELJeyIN0q_M2c7T-AIrVKMpil-OPO6giuzQl4y81Y3PFHqvZtLQOH3B78WiyQGlF0znG_CUgYSnu6WcnEXr4X_uoyW7cOufQ8_kA7eHkNH9Bigf4xMTZ9Qu1V7ma1ZkUmKTTtV\"]}"
-  console.log("RegId: " + client.registration_ids);
-  http.request({
-    headers: {
-      'Authorization': 'key=AIzaSyBXg0iMARMAPHsuo6iUPfIrPmUWUgHlDLE',
-      'Content-Type': 'application/json'
-    },
-    uri: "https://android.googleapis.com/gcm/send",
-    method: "POST",
-    data: {
-      "registration_ids": ["eiaqRXl2MAw:APA91bELJeyIN0q_M2c7T-AIrVKMpil-OPO6giuzQl4y81Y3PFHqvZtLQOH3B78WiyQGlF0znG_CUgYSnu6WcnEXr4X_uoyW7cOufQ8_kA7eHkNH9Bigf4xMTZ9Qu1V7ma1ZkUmKTTtV"],
-      "message": "Meesage1",
-      "data": {
-        "message": "Message2"
-      }
-    }
-  });
-});
 // socket.on('connection',function(client) {
 //   console.log("someone connected");
 // });

@@ -36,10 +36,10 @@ angular.module('myApp.settings', ['ngRoute'])
 			}
 		};
 
-		// Push Notification Test (Delete this code later)
-		$scope.pushNotificationTest = function() {
-			socket.emit('testPushNotifications');
-		};
+		// // Push Notification Test (Delete this code later)
+		// $scope.pushNotificationTest = function() {
+		// 	socket.emit('testPushNotifications');
+		// };
 
 		// Check that service workers are supported, if so, progressively
 		// enhance and add push messaging support, otherwise continue without it.

@@ -2,7 +2,7 @@
  
 angular.module('myApp.home', ['ngRoute'])
 // Home controller
-.controller('HomeCtrl', ["$scope", "$location", "Auth", function($scope, $location, Auth) {
+.controller('HomeCtrl', ["$scope", "$location", "$http", "Auth", function($scope, $location, $http, Auth) {
 	var firebaseObj = firebase.database().ref();
 
 	$scope.auth = Auth;
@@ -19,6 +19,39 @@ angular.module('myApp.home', ['ngRoute'])
 		firebase.auth().signInWithEmailAndPassword(username, password).then(function(result) {
 			var uid = result.uid;
       		$location.path("/dashboard");
+
+   //    		var data = {
+   //    			user_id: uid
+   //    		};
+
+			// $http.post('https://uses.herokuapp.com/nspCreate', data).then(
+			// 	function(success) {
+			// 		console.log("Success: " + success);
+			// 	}, 
+			// 	function(error) {
+			// 		console.log("Error: " + error);
+			// 	}
+			// );
+
+			var req = {
+				method: 'POST',
+				url: 'https://uses.herokuapp.com/nspCreate',
+				headers: {
+					'Content-Type': undefined
+				},
+				data: { user_id: uid }
+			}
+
+
+			$http(req).then(
+				function(success) {
+					console.log("Success: " + success);
+				}, 
+				function(error) {
+					console.log("Error: " + error);
+				}
+			);
+
 		}).catch(function(error){ 
 			var errorCode = error.code;
 			var errorMessage = error.message;
