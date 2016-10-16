@@ -20,7 +20,7 @@
 							<select class="form-control" 
 									ng-model="currentModule" 
 							        ng-options="module as module.label for module in modules"
-							        ng-click="changeModule(currentModule)">
+							        ng-change="changeModule(currentModule);">
       							<option value="">---Please Select A Module---</option> <!-- not selected / blank option -->
 							</select>
 	                        <div class="table-responsive">
@@ -44,7 +44,7 @@
 	                    </div>
 	                </div>
 	            </div>
-				<div ng-if="currentModule" class="col-lg-6">
+				<div id="graph-container" class="col-lg-6">
 	                <div class="panel panel-default">
 	                    <div class="panel-heading">
 	                        <h3 class="panel-title"><i class="fa fa-fw fa-bar-chart-o"></i> Module Readings </h3>

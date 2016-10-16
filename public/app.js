@@ -16,7 +16,7 @@ angular.module('myApp', [
 ])
 .run(["$rootScope", "$location", "$window", "Auth", function($rootScope, $location, $window, Auth) {
   // Force SSL
-  if ($location.protocol() !== 'https' && !($location.host() === "localhost" || $location.host() === "127.0.0.1")) {
+  if ($location.protocol() !== 'https' && !($location.host() === "localhost" || $location.host() === "127.0.0.1" || $location.host().indexOf("192.") >= 0)) {
       $window.location.href = $location.absUrl().replace('http', 'https');
   }
 
