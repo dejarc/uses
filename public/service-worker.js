@@ -8,7 +8,7 @@ self.addEventListener('push', function(event) {
   try {
     var data = JSON.parse(event.data.text());
     title = data.title;
-    body = data.body;
+    body = data.message;
 
     //  var icon = '/images/icon-192x192.png';
     if (title && body) {

@@ -160,7 +160,7 @@ function initNameSpace(user_id,send_res) {
         webpush.sendNotification(nsp.pushSubscriptionInfo, JSON.stringify(
           {
             title: "Notification from Tess!",
-            message: "You will receive notifications!"
+            message: "We'll start sending you notifications! (:"
           }
         ));
       }
