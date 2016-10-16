@@ -112,7 +112,16 @@ angular.module('myApp', [
     return firebase.database().ref('users/' + $firebaseAuth().$getAuth().uid);
   }
 ])
-.factory('socket', ["$rootScope", "$firebaseAuth", function($rootScope, $firebaseAuth) {
+.factory('socket', ["$rootScope", "$http", "$firebaseAuth", function($rootScope, $http, $firebaseAuth) {
+  $http.post('https://uses.herokuapp.com/nspCreate', {user_id: $firebaseAuth().$getAuth().uid}).then(
+    function(success) {
+      console.log("Success: " + success);
+    }, 
+    function(error) {
+      console.log("Error: " + error);
+    }
+  );
+
   var socket = io("https://uses.herokuapp.com/" + $firebaseAuth().$getAuth().uid);
   return {
     on: function (eventName, callback) {

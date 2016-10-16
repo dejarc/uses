@@ -152,6 +152,7 @@ function initNameSpace(user_id,send_res) {
     });
     client.on('notificationSubscription', function(data) {
       if (data) {
+        console.log("Notification Subscription.")
         nsp.pushSubscriptionInfo = {
           endpoint: data.endpoint,
           keys: data.keys
@@ -182,7 +183,7 @@ function initNameSpace(user_id,send_res) {
       // since we have no data... FAKE DATA! :D
       console.log("receiveBluetoothDevices.");
       var data = ["module1", "module2", "module3", "module4"];
-      // client.broadcast.emit('receiveBluetoothDevices', data);
+      client.broadcast.emit('receiveBluetoothDevices', data);
     });
 
     // The web client has chosen a module to add. Sent the module to the Pi.
