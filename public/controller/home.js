@@ -12,7 +12,7 @@ angular.module('myApp.home', ['ngRoute'])
     });
 
 	$scope.error = '';
-	$scope.user {
+	$scope.user = {
 		email: "",
 		password: ""
 	};
