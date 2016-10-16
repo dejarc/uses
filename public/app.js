@@ -14,13 +14,16 @@ angular.module('myApp', [
   'myApp.sidebar'
 ])
 .run(["$rootScope", "$location", "$window", "Auth", function($rootScope, $location, $window, Auth) {
-  var forceSSL = function () {
-      if ($location.protocol() !== 'https' && !($location.host() === "localhost" || $location.host() === "127.0.0.1")) {
-          $window.location.href = $location.absUrl().replace('http', 'https');
-      }
-  };
-  forceSSL();
+  // Force SSL
+  if ($location.protocol() !== 'https' && !($location.host() === "localhost" || $location.host() === "127.0.0.1")) {
+      $window.location.href = $location.absUrl().replace('http', 'https');
+  }
 
+  Auth.$onAuthStateChanged(function(firebaseUser) {
+      if(!firebaseUser) {
+          $location.path('/home');
+      }
+  });
   $rootScope.$on("$routeChangeSuccess", function(event) {
     if (Auth.$getAuth() && $location.$$path == '/home') {
       $location.path("/dashboard");

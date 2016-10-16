@@ -152,12 +152,23 @@ function initNameSpace(user_id,send_res) {
     });
     client.on('notificationSubscription', function(data) {
       if (data) {
-        nsp.pushSubscription = {
+        nsp.pushSubscriptionInfo = {
           endpoint: data.endpoint,
           keys: data.keys
         };
-        webpush.sendNotification(nsp.pushSubscription, 'Hello notification!');
       }
+    });
+    client.on('sendPushNotification', function(jsonObj) {
+        /* jsonObj can contain the following information.
+        A notification has an associated title which is a DOMString.
+        A notification has an associated body which is a DOMString.
+        A notification has an associated direction which is one of auto, ltr, and rtl.
+        A notification has an associated language which is a DOMString representing either a valid BCP 47 language tag or the empty string.
+        A notification has an associated tag which is a DOMString.
+        A notification has an associated data.
+        A notification has an associated timestamp which is a DOMTimeStamp representing the time, in milliseconds since 00:00:00 UTC on 1 January 1970, of the event for which the notification was created.
+        */
+        webpush.sendNotification(nsp.pushSubscriptionInfo, jsonObj);
     });
   });
   send_res("requested namespace " + user_id + " has been created.");

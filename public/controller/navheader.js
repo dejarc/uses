@@ -20,7 +20,6 @@ angular.module('myApp.sidebar', ['ngRoute'])
 
     $scope.signOut = function() {
         Auth.$signOut();
-        $location.path('/home');
     }
 }]);
 
