@@ -35,7 +35,9 @@
 	                        <h3 class="panel-title"><i class="fa fa-television fa-fw"></i> Live Feed</h3>
 	                    </div>
 	                    <div class="panel-body">
-
+				<div>
+      					<canvas tabindex="1" id="videoDisplay" width="640" height="480" style="border: 1px solid brown; background: white"></canvas>
+  				</div>
 	                        <button type="button" id="button_play" class="btn" ng-click='toggleLiveStream()'>
 						      <i class="fa" ng-class="{'fa-pause': isLive, 'fa-play': !isLive}"></i>
 						    </button>
