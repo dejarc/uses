@@ -4,6 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'firebase',
+  'angularUtils.directives.dirPagination',
   'myApp.home',
   'myApp.dashboard',
   'myApp.logs',

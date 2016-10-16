@@ -17,7 +17,7 @@ angular.module('myApp.logs', ['ngRoute'])
 	    		// Change the current module label.
 	    		$scope.currentModuleLabel = module.label;
 	    		// Get the logs
-	    		var query = $scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp").limitToLast($scope.logLimit);
+	    		var query = $scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp");
 	    		$scope.currentModuleLogs = $firebaseArray(query);
 	    		$("#graph-container").show();
 	    	} else {

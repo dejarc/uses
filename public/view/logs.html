@@ -33,15 +33,21 @@
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
-	                                	<tr ng-repeat="log in currentModuleLogs">
+	                                	<tr dir-paginate="log in currentModuleLogs | itemsPerPage: 10">
 	                                		<td>{{millisecondsToDate(log.timestamp)}}</td>
 	                                		<td><center>{{log.value}}</td>
 	                                		<td><center><i ng-if="log.triggered" class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i></td>
 	                                	</tr>
+	                                	<!-- <tr ng-repeat="log in currentModuleLogs">
+	                                		<td>{{millisecondsToDate(log.timestamp)}}</td>
+	                                		<td><center>{{log.value}}</td>
+	                                		<td><center><i ng-if="log.triggered" class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i></td>
+	                                	</tr> -->
 	                                </tbody>
 	                            </table>
 	                        </div>
 	                    </div>
+	                    <div class="panel-footer"><dir-pagination-controls></dir-pagination-controls></div>
 	                </div>
 	            </div>
 				<div id="graph-container" class="col-lg-6" style="display:none;">
