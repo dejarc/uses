@@ -11,7 +11,8 @@ angular.module('myApp', [
   'myApp.addModule',
   'myApp.contact',
   'myApp.about',
-  'myApp.sidebar'
+  'myApp.sidebar',
+  'angular.morris'
 ])
 .run(["$rootScope", "$location", "$window", "Auth", function($rootScope, $location, $window, Auth) {
   // Force SSL
