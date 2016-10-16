@@ -1,6 +1,5 @@
 'use strict';
  var chartData = [];
- var dataLoaded = false;
   
 angular.module('myApp.logs', ['ngRoute'])
 // Home controller
@@ -25,7 +24,7 @@ angular.module('myApp.logs', ['ngRoute'])
 	    		$scope.currentModuleLogs = [];
 	    	}
 			
-			if(dataLoaded){
+			if(module){
 				$scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp").limitToLast($scope.logLimit).once('value', function(snaps) { 
 					snaps.forEach(function(log){
 						var date = new Date(log.val().timestamp);
@@ -38,7 +37,6 @@ angular.module('myApp.logs', ['ngRoute'])
 					chartData = [];
 				});
 			}
-			dataLoaded = true;
 	    }
 
 	    $scope.millisecondsToDate = function(milliseconds) {
