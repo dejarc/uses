@@ -150,10 +150,14 @@ function initNameSpace(user_id,send_res) {
       nsp.total_users -= 1;
       console.log('user disconnected there are now ' + nsp.total_users + ' users');
     });
-
     client.on('notificationSubscription', function(data) {
-      console.log("Notification Subscription Activated.");
-      console.log(JSON.stringify(data));
+      if (data) {
+        nsp.pushSubscription = {
+          endpoint: data.endpoint,
+          keys: data.keys
+        };
+        webpush.sendNotification(nsp.pushSubscription, 'Hello notification!');
+      }
     });
   });
   send_res("requested namespace " + user_id + " has been created.");
