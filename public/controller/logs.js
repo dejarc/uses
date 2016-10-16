@@ -1,5 +1,6 @@
 'use strict';
- 
+ var chartData = [];
+  
 angular.module('myApp.logs', ['ngRoute'])
 // Home controller
 .controller('LogsCtrl', ["$scope", "$firebaseArray", "CurrentUserRef", 
@@ -22,6 +23,19 @@ angular.module('myApp.logs', ['ngRoute'])
 	    		$scope.currentModuleLabel = "-";
 	    		$scope.currentModuleLogs = [];
 	    	}
+			
+			$scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp").limitToLast($scope.logLimit).once('value', function(snaps) { 
+				snaps.forEach(function(log){
+					var date = new Date(log.val().timestamp);
+					//console.log(date.toLocaleDateString() + " " + log.val().value);
+					var string = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+					console.log(string);
+					chartData.push({time: string, value: log.val().value});
+				});
+				document.getElementById('line-chart').innerHTML = "";
+				drawGraph();
+				chartData = [];
+			});
 	    }
 
 	    $scope.millisecondsToDate = function(milliseconds) {
@@ -36,9 +50,28 @@ angular.module('myApp.logs', ['ngRoute'])
 	    $scope.filteredMessages = $firebaseArray(query);
 	    */
 	}
+	
+	
 ]);
 
+function drawGraph() {
+	new Morris.Line({
+	  // ID of the element in which to draw the chart.
+	  element: 'line-chart',
+	  // Chart data records -- each entry in this array corresponds to a point on
+	  // the chart.
+	  data: chartData,
+	  // The name of the data record attribute that contains x-values.
+	  xkey: 'time',
+	  // A list of names of data record attributes that contain y-values.
+	  ykeys: ['value'],
+	  // Labels for the ykeys -- will be displayed when you hover over the
+	  // chart.
+	  labels: ['Value']
+	});
+}
 
+window.setTimeout(function(){ drawGraph(); },1000);
 /*
 Users need to log into their USES account on their Pi.
 The USES information is sent to node js.
