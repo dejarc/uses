@@ -3,7 +3,32 @@
 	<div id="page-wrapper">
 	    <div class="container-fluid">
 	        <!-- Page Heading -->
-
+			<h1 class="page-header">
+	        	Add Module    
+	        </h1>
+					
+			<div class="row" style="margin-top:15px;">
+	            <div class="col-lg-6">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h3 class="panel-title"><i class="fa fa-plus fa-fw"></i> Add New Module </h3>
+	                    </div>
+	                    <div class="panel-body">
+	                    	<div>
+								<select class="form-control" 
+										ng-model="currentModule" 
+								        ng-options="module as module.label for module in bluetoothDevices">
+	      							<option value="">---Please Select A Module---</option> <!-- not selected / blank option -->
+								</select>
+							</div>
+	                    </div>
+                        <div class="panel-footer text-right">
+                            <button ng-click="addNewModule(currentModule)" type="button" class = "btn btn-secondary btn btn-outline-primary">Add Module</button>
+                        </div>
+	                </div>
+	            </div>
+	        </div>
+			
 	    </div>
 	    <!-- /.container-fluid -->
 

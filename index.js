@@ -170,6 +170,23 @@ function initNameSpace(user_id,send_res) {
         */
         webpush.sendNotification(nsp.pushSubscriptionInfo, jsonObj);
     });
+
+    // Web clients emit('getBluetoothDevices') to query the pi for surrounding bluetooth devices.
+    client.on('getBluetoothDevices', function(){
+      client.broadcast.emit('getBluetoothDevices');
+    });
+
+    // The Raspberry Pi will emit('receiveBluetoothDevices') passing in a list of bluetooth names. The list will be bounced to the web clients.
+    client.on('recieveBluetoothDevices', function(data) {
+      // since we have no data... FAKE DATA! :D
+      var data = ["module1", "module2", "module3", "module4"];
+      client.broadcast.emit('recieveBluetoothDevices', data);
+    });
+
+    // The web client has chosen a module to add. Sent the module to the Pi.
+    client.on('addBluetoothDevice', function(moduleToAdd) {
+      client.broadcast.emit('addBluetoothDevice', moduleToAdd);
+    });
   });
   send_res("requested namespace " + user_id + " has been created.");
 }
