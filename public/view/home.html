@@ -2,12 +2,17 @@
     <div class="jumbotron" style="padding-bottom:0px;">
         <h2>USES - SIC Hackathon!</h2>
     </div>
-    <form class="form-signin" role="form" ng-submit="SignIn($event)">
-        <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-        <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
-        <label class="checkbox">
-            <a href="#"> Sign Up</>
-        </label>
-    <button type="submit" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
-  </form>
+    <form name="signinForm" class="form-signin" role="form" ng-submit="SignIn($event)">
+        <input ng-model="user.email" name="email" type="email" class="form-control" placeholder="Email address" required="" autofocus="" ng-model-options="{ updateOn: 'blur' }">
+        <input ng-model="user.password" name="password" type="password" class="form-control" placeholder="Password" required="" ng-model-options="{ updateOn: 'blur' }">
+
+		<a href="#"> Sign Up</a>
+		<button type="submit" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
+
+		<div class="alert alert-danger" role="alert" ng-model="error" ng-show="showDetails">{{error}}</div>
+		<div class="alert alert-danger" role="alert" ng-show="signinForm.email.$error.email && signinForm.email.$dirty">Invalid email.</div>
+		<div class="alert alert-danger" role="alert" ng-show="signinForm.password.$error.required && signinForm.password.$dirty">Password Required.</div>
+	</form>
+
+
 </div>

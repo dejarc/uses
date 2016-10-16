@@ -11,6 +11,8 @@ angular.module('myApp.home', ['ngRoute'])
      	$scope.firebaseUser = firebaseUser;
     });
 
+	$scope.error = '';
+	
 	$scope.SignIn = function(event) {
 	    event.preventDefault();  // To prevent form refresh
 	    var username = $scope.user.email;
@@ -23,6 +25,8 @@ angular.module('myApp.home', ['ngRoute'])
 			var errorCode = error.code;
 			var errorMessage = error.message;
 			console.log(errorMessage);
+			$scope.showDetails = true;
+			$scope.error = errorMessage;
 		})
 	}
 }]);
