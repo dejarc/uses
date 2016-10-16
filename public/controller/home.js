@@ -12,6 +12,10 @@ angular.module('myApp.home', ['ngRoute'])
     });
 
 	$scope.error = '';
+	$scope.user {
+		email: "",
+		password: ""
+	};
 	
 	$scope.SignIn = function(event) {
 	    event.preventDefault();  // To prevent form refresh
