@@ -32,26 +32,6 @@ angular.module('myApp.home', ['ngRoute'])
 					console.log("Error: " + error);
 				}
 			);
-
-			// var req = {
-			// 	method: 'POST',
-			// 	url: 'https://uses.herokuapp.com/nspCreate',
-			// 	headers: {
-			// 		'Content-Type': undefined
-			// 	},
-			// 	data: { user_id: uid }
-			// }
-
-
-			// $http(req).then(
-			// 	function(success) {
-			// 		console.log("Success: " + success);
-			// 	}, 
-			// 	function(error) {
-			// 		console.log("Error: " + error);
-			// 	}
-			// );
-
 		}).catch(function(error){ 
 			var errorCode = error.code;
 			var errorMessage = error.message;
