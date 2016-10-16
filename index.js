@@ -153,7 +153,7 @@ function initNameSpace(user_id,send_res) {
 
     client.on('notificationSubscription', function(data) {
       console.log("Notification Subscription Activated.");
-      console.log(data);
+      console.log(JSON.stringify(data));
     });
   });
   send_res("requested namespace " + user_id + " has been created.");
