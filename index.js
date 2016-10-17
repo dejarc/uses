@@ -212,7 +212,7 @@ function initNameSpace(user_id,send_res) {
       if (data) {
         var timestamp = (new Date()).getTime();
         console.log(data);
-        var pidata = if (typeof data == "string") ? JSON.parse(data) : data;
+        var pidata = (typeof data == "string") ? JSON.parse(data) : data;
         if (pidata.data) {
           var modulesRef = nsp.firebaseRef.child("modules");
           for(var i = 0; i < pidata.data.length; i++) {
