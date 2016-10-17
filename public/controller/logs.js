@@ -1,6 +1,6 @@
 'use strict';
  var chartData = [];
-  
+ 
 angular.module('myApp.logs', ['ngRoute'])
 // Home controller
 .controller('LogsCtrl', ["$scope", "$firebaseArray", "CurrentUserRef", 
@@ -9,7 +9,7 @@ angular.module('myApp.logs', ['ngRoute'])
 	    $scope.modules = $firebaseArray($scope.modulesRef);
 	    $scope.logLimit = 25;
 	    $scope.currentModuleLogs = [];
-
+		$scope.currentTime = '';
 
 		$scope.currentModuleLabel = "-";
 	    $scope.changeModule = function(module) {
@@ -37,6 +37,8 @@ angular.module('myApp.logs', ['ngRoute'])
 					document.getElementById('line-chart').innerHTML = "";
 					drawGraph();
 					chartData = [];
+					//Update time of latest data.
+					$scope.currentTime = new Date().toLocaleString();					
 				});
 			}
 	    }
