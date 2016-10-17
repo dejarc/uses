@@ -45,6 +45,9 @@ app.use('/css', express.static(__dirname + '/public/templates/css'));
 app.get('/home', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
 });
+app.get('/portnumber', function(req, res) {
+  res.status(200).json({"port": port});
+});
 app.post('/sendKandyMsg',function(req,res) {
   console.log(req);
   if(!(req.body && req.body.message)) {

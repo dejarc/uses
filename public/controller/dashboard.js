@@ -36,18 +36,19 @@ angular.module('myApp.dashboard', ['ngRoute'])
 //                 uid: Auth.$getAuth.uid,
 //                 data: streamData
 //             });
-         if(streamData.image) {
-           var img = new Image();
-           img.src = 'data:image/jpeg;base64,' + streamData.buffer;
-           img.addEventListener('load', function() {
-             drawables.buf_size += 1;//increment buffer
-           });
-           img.addEventListener('error', function() {
-             console.log("there was an error downloading the image");
-           });
-           drawables.image_arr.push(img);//cache the image 
-         }
+            if(streamData.image) {
+               var img = new Image();
+               img.src = 'data:image/jpeg;base64,' + streamData.buffer;
+               img.addEventListener('load', function() {
+                 drawables.buf_size += 1;//increment buffer
+               });
+               img.addEventListener('error', function() {
+                 console.log("there was an error downloading the image");
+               });
+               drawables.image_arr.push(img);//cache the image 
+            }
         });
+        
         (function displayLoop() {//start the refresh loop
            console.log("checking the buffer for images");
            if(drawables.buf_size >= 1) {
