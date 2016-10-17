@@ -129,6 +129,7 @@ function initNameSpace(user_id,send_res) {
   var spc_name = "/" + user_id;
   var nsp = socket.of(spc_name);
   nsp.total_users = 0;
+  nsp.firebaseRef = firebase.database().ref();
   all_users[user_id] = nsp;//hold a reference to this namespace
   nsp.on('connection', function(client){
     console.log('someone connected to namespace ' + user_id);
@@ -202,7 +203,31 @@ function initNameSpace(user_id,send_res) {
 
     // Receive sensor data from pi
     client.on('receivePiSensorData', function(data){
-      console.log(data);
+      // { 
+      //   hostname: 'b8:27:eb:f7:d0:73',
+      //   data: [ { value: 0, label: 'gas' },
+      //           { value: 24.700000762939453, label: 'temperature' },
+      //           { value: 41.70000076293945, label: 'humidity' } ] 
+      // }
+      if (data) {
+        console.log(data);
+        var pidata = json.parse(data);
+        var modulesRef = nsp.firebaseRef.child("modules");
+        for (var sensor in pidata.data) {
+          var sensorRef = modulesRef.child(sensor.label);
+          sensorRef.set({
+            'currentValue': sensor.value
+          });
+          var logsRef = sensorRef.child("logs");
+          var timestamp = (new Date()).getTime();
+          logsRef.add({
+            "timestamp": timestamp,
+            "-timestamp": timestamp * -1,
+            "value": sensor.value,
+            "triggered": sensor.triggered
+          });
+        }
+      }
     });
   });
   send_res("requested namespace " + user_id + " has been created.");
