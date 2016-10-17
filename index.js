@@ -234,6 +234,14 @@ function initNameSpace(user_id,send_res) {
         }
       }
     });
+
+    // Recieve an image from the pi
+    client.on('receivePiImageData', function(data) {
+      if (data) {
+        console.log('Pi Image Data: ' + data); // wtf will this look like?
+        nsp.emit('receivePiImageData', data);
+      }
+    });
   });
   send_res("requested namespace " + user_id + " has been created.");
 }
