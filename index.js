@@ -213,7 +213,10 @@ function initNameSpace(user_id,send_res) {
         console.log(data);
         var pidata = JSON.parse(data);
         var modulesRef = nsp.firebaseRef.child("modules");
-        for (var sensor in pidata.data) {
+        for(var i = 0; i < pidata.data.length; i++) {
+          var sensor = pidata.data[i];
+          console.log("Sensor label: " + sensor.label);
+          console.log("Sensor value: " + sensor.value);
           var sensorRef = modulesRef.child(sensor.label);
           sensorRef.set({
             'currentValue': sensor.value
