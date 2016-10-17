@@ -227,7 +227,7 @@ function initNameSpace(user_id,send_res) {
             "timestamp": timestamp,
             "-timestamp": timestamp * -1,
             "value": sensor.value,
-            "triggered": sensor.triggered ? false : sensor.triggered
+            "triggered": sensor.triggered ? sensor.triggered : false 
           });
         }
       }
