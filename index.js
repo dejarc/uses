@@ -199,6 +199,11 @@ function initNameSpace(user_id,send_res) {
     client.on('addBluetoothDevice', function(moduleToAdd) {
       nsp.emit('addBluetoothDevice', moduleToAdd);
     });
+
+    // Receive sensor data from pi
+    client.on('receivePiSensorData', function(data){
+      console.log(data);
+    });
   });
   send_res("requested namespace " + user_id + " has been created.");
 }
