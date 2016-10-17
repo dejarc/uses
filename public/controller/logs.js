@@ -35,10 +35,10 @@ angular.module('myApp.logs', ['ngRoute'])
 						chartData.push({time: string, value: log.val().value});
 					});
 					document.getElementById('line-chart').innerHTML = "";
-					drawGraph();
+					drawGraph(module.unit);
 					chartData = [];
 					//Update time of latest data.
-					$scope.currentTime = new Date().toLocaleString();					
+					$scope.currentTime = new Date().toLocaleString();		
 				});
 			}
 	    }
@@ -78,7 +78,7 @@ function buildMorrisTimeString(date) {
 }
 
 // Draws a line graph in the given element id
-function drawGraph() {
+function drawGraph(unit) {
 	new Morris.Line({
 	  // ID of the element in which to draw the chart.
 	  element: 'line-chart',
@@ -92,7 +92,7 @@ function drawGraph() {
 	  // Labels for the ykeys -- will be displayed when you hover over the
 	  // chart.
 	  ymin: 'auto',
-	  labels: ['Value'],
+	  labels: [unit],
 	  resize: 'true'
 	});
 }
