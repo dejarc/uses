@@ -223,7 +223,7 @@ function initNameSpace(user_id,send_res) {
           });
           var logsRef = sensorRef.child("logs");
           var timestamp = (new Date()).getTime();
-          logsRef.add({
+          logsRef.push({
             "timestamp": timestamp,
             "-timestamp": timestamp * -1,
             "value": sensor.value,
