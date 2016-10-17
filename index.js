@@ -210,6 +210,7 @@ function initNameSpace(user_id,send_res) {
       //           { value: 41.70000076293945, label: 'humidity' } ] 
       // }
       if (data) {
+        var timestamp = (new Date()).getTime();
         console.log(data);
         var pidata = JSON.parse(data);
         var modulesRef = nsp.firebaseRef.child("modules");
@@ -217,14 +218,11 @@ function initNameSpace(user_id,send_res) {
           var sensor = pidata.data[i];
           console.log("Sensor label: " + sensor.label);
           console.log("Sensor value: " + sensor.value);
-          var sensorRef = modulesRef.child(sensor.label);
           sensorRef.set({
+            'devicelabel': sensor.label,
             'currentValue': sensor.value
           });
-          var logsRef = sensorRef.child("logs");
-          var timestamp = (new Date()).getTime();
-          var newlog = logsRef.push();
-          newlog.set({
+          sensorRef.child("logs").push({
             "timestamp": timestamp,
             "-timestamp": timestamp * -1,
             "value": sensor.value,
