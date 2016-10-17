@@ -129,7 +129,7 @@ function initNameSpace(user_id,send_res) {
   var spc_name = "/" + user_id;
   var nsp = socket.of(spc_name);
   nsp.total_users = 0;
-  nsp.firebaseRef = firebase.database().ref();
+  nsp.firebaseRef = firebase.database().ref().child(user_id);
   all_users[user_id] = nsp;//hold a reference to this namespace
   nsp.on('connection', function(client){
     console.log('someone connected to namespace ' + user_id);
