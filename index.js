@@ -218,6 +218,7 @@ function initNameSpace(user_id,send_res) {
           var sensor = pidata.data[i];
           console.log("Sensor label: " + sensor.label);
           console.log("Sensor value: " + sensor.value);
+          var sensorRef = modulesRef.child(sensor.label);
           sensorRef.set({
             'devicelabel': sensor.label,
             'currentValue': sensor.value
