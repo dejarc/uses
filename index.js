@@ -212,23 +212,25 @@ function initNameSpace(user_id,send_res) {
       if (data) {
         var timestamp = (new Date()).getTime();
         console.log(data);
-        var pidata = JSON.parse(data);
-        var modulesRef = nsp.firebaseRef.child("modules");
-        for(var i = 0; i < pidata.data.length; i++) {
-          var sensor = pidata.data[i];
-          console.log("Sensor label: " + sensor.label);
-          console.log("Sensor value: " + sensor.value);
-          var sensorRef = modulesRef.child(sensor.label);
-          sensorRef.update({
-            'devicelabel': sensor.label,
-            'currentValue': sensor.value
-          });
-          sensorRef.child("logs").push({
-            "timestamp": timestamp,
-            "-timestamp": timestamp * -1,
-            "value": sensor.value,
-            "triggered": sensor.triggered ? sensor.triggered : false 
-          });
+        var pidata = if (typeof data == "string") ? JSON.parse(data) : data;
+        if (pidata.data) {
+          var modulesRef = nsp.firebaseRef.child("modules");
+          for(var i = 0; i < pidata.data.length; i++) {
+            var sensor = pidata.data[i];
+            console.log("Sensor label: " + sensor.label);
+            console.log("Sensor value: " + sensor.value);
+            var sensorRef = modulesRef.child(sensor.label);
+            sensorRef.update({
+              'devicelabel': sensor.label,
+              'currentValue': sensor.value
+            });
+            sensorRef.child("logs").push({
+              "timestamp": timestamp,
+              "-timestamp": timestamp * -1,
+              "value": sensor.value,
+              "triggered": sensor.triggered ? sensor.triggered : false 
+            });
+          }
         }
       }
     });
