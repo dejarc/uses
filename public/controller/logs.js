@@ -63,17 +63,18 @@ angular.module('myApp.logs', ['ngRoute'])
 function buildMorrisTimeString(date) {
 	// Add YYYY-MM-DD
 	var dateString = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " ";
-	// A
+	// prepend 0 if single digit hours
 	if (date.getHours() > 9) {
 		dateString += date.getHours() + ":";
 	} else {
 		dateString += "0" + date.getHours() + ":";
 	}
+	// prepend 0 if single digit minutes
 	if (date.getMinutes() > 9) {
 		dateString += date.getMinutes();
 	} else {
 		dateString += "0" + date.getMinutes();
-	}			
+	}
 	return dateString;
 }
 
