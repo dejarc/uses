@@ -219,7 +219,7 @@ function initNameSpace(user_id,send_res) {
           console.log("Sensor label: " + sensor.label);
           console.log("Sensor value: " + sensor.value);
           var sensorRef = modulesRef.child(sensor.label);
-          sensorRef.set({
+          sensorRef.update({
             'devicelabel': sensor.label,
             'currentValue': sensor.value
           });
