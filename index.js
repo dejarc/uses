@@ -211,7 +211,7 @@ function initNameSpace(user_id,send_res) {
       // }
       if (data) {
         console.log(data);
-        var pidata = json.parse(data);
+        var pidata = JSON.parse(data);
         var modulesRef = nsp.firebaseRef.child("modules");
         for (var sensor in pidata.data) {
           var sensorRef = modulesRef.child(sensor.label);
