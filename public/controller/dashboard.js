@@ -54,7 +54,7 @@ angular.module('myApp.dashboard', ['ngRoute'])
            if(drawables.buf_size >= 1) {
              display.clearRect(0, 0, display.canvas.width, display.canvas.height);
              display.save();
-             display.drawImage(drawables.image_arr[0], 0, 0);
+             display.drawImage(drawables.image_arr[0], 0, 0, display.canvas.width, display.canvas.height);
              drawables.buf_size -= 1;
              drawables.image_arr.splice(0,1);//remove the image shown
            }
