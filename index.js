@@ -201,7 +201,7 @@ function initNameSpace(user_id,send_res) {
       // since we have no data... FAKE DATA! :D
       console.log("receiveBluetoothDevices.");
       var data = [{label: "module1"}, {label: "module2"}, {label: "module3"}, {label: "module4"}];
-      nsp.emit('receiveBluetoothDevices', data);
+      client.broadcast.emit('receiveBluetoothDevices', data);
     });
 
     // The web client has chosen a module to add. Sent the module to the Pi.
@@ -244,10 +244,10 @@ function initNameSpace(user_id,send_res) {
     });
 
     // Recieve an image from the pi
-    client.on('receivePiImageData', function(data) {
+    client.on('newImage', function(data) {
       if (data) {
-        console.log('Pi Image Data: ' + data); // wtf will this look like?
-        nsp.emit('receivePiImageData', data);
+        console.log('received a new image'); // wtf will this look like?
+        client.broadcast.emit("newImage",data);
       }
     });
   });
