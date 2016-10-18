@@ -154,8 +154,8 @@ function initNameSpace(user_id,send_res) {
     });
   });
   nsp.sendPushNotification = function(jsonObj) {
-    Object.keys(nsp.pushSubscriptionInfo).forEach(function(endpoint) {
-      webpush.sendNotification(nsp.pushSubscriptionInfo[endpoint], JSON.stringify(jsonObj));
+    Object.keys(nsp.subscripbers).forEach(function(endpoint) {
+      webpush.sendNotification(nsp.subscripbers[endpoint], JSON.stringify(jsonObj));
     });
   }
 
@@ -206,8 +206,8 @@ function initNameSpace(user_id,send_res) {
         A notification has an associated data.
         A notification has an associated timestamp which is a DOMTimeStamp representing the time, in milliseconds since 00:00:00 UTC on 1 January 1970, of the event for which the notification was created.
         */
-        Object.keys(nsp.pushSubscriptionInfo).forEach(function(endpoint) {
-          webpush.sendNotification(nsp.pushSubscriptionInfo[endpoint], JSON.stringify(jsonObj));
+        Object.keys(nsp.subscripbers).forEach(function(endpoint) {
+          webpush.sendNotification(nsp.subscripbers[endpoint], JSON.stringify(jsonObj));
         });
     });
 
