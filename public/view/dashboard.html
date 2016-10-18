@@ -72,7 +72,7 @@
 	                                <tbody>
 	                                	<tr ng-repeat="module in modules">
 	                                		<td>{{(module.label) ? module.label : module.devicelabel}}</td>
-	                                		<td>{{module.currentValue}}</td>
+	                                		<td>{{module.currentValue.toFixed(2)}} <span ng-if="module.unit">({{module.unit}})</span></td>
 	                                	</tr>
 	                                </tbody>
 	                            </table>
