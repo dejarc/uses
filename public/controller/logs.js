@@ -71,9 +71,15 @@ function buildMorrisTimeString(date) {
 	}
 	// prepend 0 if single digit minutes
 	if (date.getMinutes() > 9) {
-		dateString += date.getMinutes();
+		dateString += date.getMinutes() + ":";
 	} else {
-		dateString += "0" + date.getMinutes();
+		dateString += "0" + date.getMinutes() + ":";
+	}
+	// prepent 0 if single digit seconds
+	if (date.getSeconds() > 9) {
+		dateString += date.getSeconds();
+	} else {
+		dateString += "0" + date.getSeconds();
 	}
 	return dateString;
 }
