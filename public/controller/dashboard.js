@@ -61,7 +61,7 @@ angular.module('myApp.dashboard', ['ngRoute'])
            var nxt_loop = function() {
              displayLoop();
            };
-           var timeoutPromise = setTimeout(nxt_loop, 1000/5);//set this loop according to the number of frames per second
+           var timeoutPromise = setTimeout(nxt_loop, 1000/20);//set this loop according to the number of frames per second
 
           $scope.$on('$destroy',function(){
               clearTimeout(timeoutPromise);
