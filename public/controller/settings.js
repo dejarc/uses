@@ -155,6 +155,7 @@ angular.module('myApp.settings', ['ngRoute'])
 		        isPushEnabled = true;
 		        pushButton.textContent = 'Disable Push Messages';
 		        pushButton.disabled = false;
+				CurrentUserRef.child('subscribers').push(subscription);
 			    socket.emit('notificationSubscription', subscription);
 
 		        // TODO: Send the subscription subscription.endpoint
