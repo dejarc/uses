@@ -49,6 +49,30 @@ angular.module('myApp.logs', ['ngRoute'])
 					//Update time of latest data.
 					$scope.currentTime = new Date().toLocaleString();		
 				});
+				window.setInterval(function() {
+				var ymin = Number.POSITIVE_INFINITY;
+				var ymax = Number.NEGATIVE_INFINITY;
+				$scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp").limitToLast($scope.logLimit).once('value', function(snaps) { 
+					snaps.forEach(function(log){
+						var date = new Date(log.val().timestamp);
+						//console.log(date.toLocaleDateString() + " " + log.val().value);
+						var string = buildMorrisTimeString(date);
+						var theValue = Math.round(log.val().value);
+						if(theValue < ymin) {
+							ymin = theValue;
+						}
+						if(theValue > ymax) {
+							ymax = theValue;
+						}
+						chartData.push({time: string, value: log.val().value.toFixed(2)});
+					});
+					document.getElementById('line-chart').innerHTML = "";
+					drawGraph(module.unit, ymin-1, ymax+1);
+					chartData = [];
+					//Update time of latest data.
+					$scope.currentTime = new Date().toLocaleString();		
+				});
+				}, 1000);
 			}
 	    }
 
