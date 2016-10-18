@@ -166,7 +166,7 @@ function initNameSpace(user_id,send_res) {
     client.on('notificationSubscription', function(data) {
       if (data) {
         console.log("Notification Subscription: " + JSON.stringify(data));
-        nsp.pushSubscriptionInfo[data.endpoint] = data;
+        nsp.subscribers[data.endpoint] = data;
         webpush.sendNotification(data, JSON.stringify(
           {
             title: "Notification from Tess!",
