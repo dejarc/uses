@@ -70,7 +70,7 @@
 	                                </thead>
 	                                <tbody>
 	                                	<tr ng-repeat="module in modules">
-	                                		<td>{{module.label}}</td>
+	                                		<td>{{(module.label) ? module.label : module.devicelabel}}</td>
 	                                		<td>{{module.currentValue}}</td>
 	                                	</tr>
 	                                </tbody>
