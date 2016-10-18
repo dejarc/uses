@@ -32,7 +32,7 @@ angular.module('myApp.logs', ['ngRoute'])
 						var date = new Date(log.val().timestamp);
 						//console.log(date.toLocaleDateString() + " " + log.val().value);
 						var string = buildMorrisTimeString(date);
-						chartData.push({time: string, value: log.val().value});
+						chartData.push({time: string, value: log.val().value.toFixed(2)});
 					});
 					document.getElementById('line-chart').innerHTML = "";
 					drawGraph(module.unit);
