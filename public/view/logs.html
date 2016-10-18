@@ -19,7 +19,7 @@
 	                    <div class="panel-body">
 							<select class="form-control" 
 									ng-model="currentModule" 
-							        ng-options="module as module.label for module in modules"
+							        ng-options="module as (module.label ? module.label : module.devicelabel) for module in modules"
 							        ng-change="changeModule(currentModule);">
       							<option value="">---Please Select A Module---</option> <!-- not selected / blank option -->
 							</select>
@@ -35,7 +35,7 @@
 	                                <tbody>
 	                                	<tr dir-paginate="log in currentModuleLogs | itemsPerPage: 10">
 	                                		<td>{{millisecondsToDate(log.timestamp)}}</td>
-	                                		<td><center>{{log.value}}</td>
+	                                		<td><center>{{log.value.toFixed(2)}}</td>
 	                                		<td><center><i ng-if="log.triggered" class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i></td>
 	                                	</tr>
 	                                	<!-- <tr ng-repeat="log in currentModuleLogs">
