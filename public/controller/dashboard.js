@@ -15,12 +15,12 @@ angular.module('myApp.dashboard', ['ngRoute'])
         drawables.buf_size = 0;//hold the number of ready-to-display images
         $scope.toggleLiveStream = function() {
             if ($scope.isLive) {
-                socket.emit('stop-stream', {
-                    uid: Auth.$getAuth().uid
+                socket.emit('newMessage', {
+                    message: "objectstream"
                 });
             } else {
-                socket.emit('start-stream', {
-                    uid: Auth.$getAuth().uid
+                socket.emit('newMessage', {
+                    message: "livestream"
                 });
             }
             $scope.isLive = !$scope.isLive;

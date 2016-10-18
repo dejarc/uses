@@ -143,10 +143,12 @@ function initNameSpace(user_id,send_res) {
     snaps.forEach(function(module) {
       // Listen for value changes.
       nsp.firebaseRef.child('modules').child(module.key).child('threshold').on('value', function(dataSnapshot){
+        console.log("Sending threshold: " + dataSnapshot.val());
         nsp.emit('newThreshold', {"value": dataSnapshot.val()});
       });
       // Send the current values.
       nsp.firebaseRef.child('modules').child(module.key).child('threshold').once('value', function(dataSnapshot){
+        console.log("Sending threshold: " + dataSnapshot.val());
         nsp.emit('newThreshold', {"value": dataSnapshot.val()});
       });
     });
@@ -270,6 +272,7 @@ function initNameSpace(user_id,send_res) {
         snaps.forEach(function(module) {
           // Send the current values.
           nsp.firebaseRef.child('modules').child(module.key).child('threshold').once('value', function(dataSnapshot){
+            console.log("Sending threshold: " + dataSnapshot.val());
             nsp.emit('newThreshold', {"value": dataSnapshot.val()});
           });
         });
