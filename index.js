@@ -263,6 +263,18 @@ function initNameSpace(user_id,send_res) {
         client.broadcast.emit("newImage",data);
       }
     });
+
+    client.on('getThreshold', function(){
+      // Send the current values.
+      nsp.firebaseRef.child('modules').once('value', function(snaps) {
+        snaps.forEach(function(module) {
+          // Send the current values.
+          nsp.firebaseRef.child('modules').child(module.key).child('threshold').once('value', function(dataSnapshot){
+            nsp.emit('newThreshold', {"value": dataSnapshot.val()});
+          });
+        });
+      });
+    });
   });
   send_res("requested namespace " + user_id + " has been created.");
 }
