@@ -132,10 +132,23 @@ function initNameSpace(user_id,send_res) {
   nsp.firebaseRef = firebase.database().ref().child('users').child(user_id);
   nsp.firebaseSubscribers = {}; 
   nsp.subscribers = {};
+  nsp.modules = {};
   nsp.firebaseRef.child('subscriptions').once('value', function(snaps) {
     snaps.forEach(function(subscriber){
       var value = subscriber.val();
       nsp.subscripbers[value.endpoint] = value;
+    });
+  });
+  nsp.firebaseRef.child('modules').once('value', function(snaps) {
+    snaps.forEach(function(module) {
+      // Listen for value changes.
+      nsp.firebaseRef.child('modules').child(module.key).child('threshold').on('value', function(dataSnapshot){
+        nsp.emit('newThreshold', {"value": dataSnapshot.val()});
+      });
+      // Send the current values.
+      nsp.firebaseRef.child('modules').child(module.key).child('threshold').once('value', function(dataSnapshot){
+        nsp.emit('newThreshold', {"value": dataSnapshot.val()});
+      });
     });
   });
 
