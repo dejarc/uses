@@ -39,6 +39,7 @@
 	                                        <th class="col-md-6">Module</th>
 	                                        <th class="col-md-3">Current Value</th>
 	                                        <th class="col-md-3">Threshold Value</th>
+											<th class="col-md-3">Unit</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
@@ -46,6 +47,7 @@
 	                                		<td><input ng-model="module.label" type="text" class="form-control" placeholder="{{module.devicelabel}}" value="{{module.label}}"></td>
 	                                		<td><input type="text" class="form-control" value="{{module.currentValue}}" readonly></td>
 	                                		<td><input ng-model="module.threshold" type="number" class="form-control" value="{{module.threshold}}"></td>
+	                                		<td><input ng-model="module.unit" type="text" class="form-control" value="{{module.unit}}"></td>
 	                                	</tr>
 	                                </tbody>
 	                            </table>
