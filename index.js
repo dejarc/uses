@@ -154,9 +154,11 @@ function initNameSpace(user_id,send_res) {
     });
   });
   nsp.sendPushNotification = function(jsonObj) {
-    Object.keys(nsp.subscripbers).forEach(function(endpoint) {
-      webpush.sendNotification(nsp.subscripbers[endpoint], JSON.stringify(jsonObj));
-    });
+    if (jsonObj) {
+      Object.keys(nsp.subscripbers).forEach(function(endpoint) {
+        webpush.sendNotification(nsp.subscripbers[endpoint], JSON.stringify(jsonObj));
+      });
+    }
   }
 
   all_users[user_id] = nsp;//hold a reference to this namespace
@@ -259,10 +261,10 @@ function initNameSpace(user_id,send_res) {
               "triggered": sensor.triggered ? sensor.triggered : false 
             });
             if (sensor.triggered && sensor.message) {
-              nsp.sendPushNotification(JSON.stringify({
+              nsp.sendPushNotification({
                   title: sensor.title ? sensor.title : "Notification from Tess!",
                   message: sensor.message
-              }));
+              });
             }
           }
         }
