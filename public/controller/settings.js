@@ -7,6 +7,7 @@ angular.module('myApp.settings', ['ngRoute'])
 		var modulesRef = CurrentUserRef.child('modules');
 		$scope.modules = $firebaseArray(modulesRef);
 		var firebaseObj = firebase.database().ref();
+		$scope.subscribers = $firebaseArray(CurrentUserRef.child('subscribers'));
 	
 		// Save label and threshold settings for modules
 		$scope.saveSettings = function() {
@@ -155,7 +156,7 @@ angular.module('myApp.settings', ['ngRoute'])
 		        isPushEnabled = true;
 		        pushButton.textContent = 'Disable Push Messages';
 		        pushButton.disabled = false;
-				CurrentUserRef.child('subscribers').push(subscription);
+				$scope.subscribers.$add(subscription);
 			    socket.emit('notificationSubscription', subscription);
 
 		        // TODO: Send the subscription subscription.endpoint
