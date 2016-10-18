@@ -54,7 +54,8 @@ angular.module('myApp.logs', ['ngRoute'])
 
 	    $scope.millisecondsToDate = function(milliseconds) {
 	    	var date = new Date(milliseconds);
-			return date.toLocaleDateString() + " @ " + date.toLocaleTimeString();
+	    	return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear().toString().substr(2,2) + " @ " + date.toLocaleTimeString();;
+			// return date.toLocaleDateString() + " @ " + date.toLocaleTimeString();
 	    }
 
 	    /* Use this for logs
