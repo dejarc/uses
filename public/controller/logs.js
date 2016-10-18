@@ -27,15 +27,24 @@ angular.module('myApp.logs', ['ngRoute'])
 	    	}
 			
 			if(module){
+				var ymin = Number.POSITIVE_INFINITY;
+				var ymax = Number.NEGATIVE_INFINITY;
 				$scope.modulesRef.child(module.$id + "/logs").orderByChild("timestamp").limitToLast($scope.logLimit).once('value', function(snaps) { 
 					snaps.forEach(function(log){
 						var date = new Date(log.val().timestamp);
 						//console.log(date.toLocaleDateString() + " " + log.val().value);
 						var string = buildMorrisTimeString(date);
+						var theValue = Math.round(log.val().value);
+						if(theValue < ymin) {
+							ymin = theValue;
+						}
+						if(theValue > ymax) {
+							ymax = theValue;
+						}
 						chartData.push({time: string, value: log.val().value.toFixed(2)});
 					});
 					document.getElementById('line-chart').innerHTML = "";
-					drawGraph(module.unit);
+					drawGraph(module.unit, ymin-1, ymax+1);
 					chartData = [];
 					//Update time of latest data.
 					$scope.currentTime = new Date().toLocaleString();		
@@ -85,7 +94,7 @@ function buildMorrisTimeString(date) {
 }
 
 // Draws a line graph in the given element id
-function drawGraph(unit) {
+function drawGraph(unit, minY, maxY) {
 	new Morris.Line({
 	  // ID of the element in which to draw the chart.
 	  element: 'line-chart',
@@ -98,7 +107,8 @@ function drawGraph(unit) {
 	  ykeys: ['value'],
 	  // Labels for the ykeys -- will be displayed when you hover over the
 	  // chart.
-	  ymin: 'auto',
+	  ymin: minY,
+	  ymax: maxY,
 	  labels: [unit],
 	  resize: 'true'
 	});
